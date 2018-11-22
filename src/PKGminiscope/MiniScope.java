@@ -4,7 +4,7 @@ package REMtracker.src.PKGminiscope;
  * (MiniScopeDataModel, MiniScopeTimerTask, Channel & MiniScopeEventRelayer)
  *
  * @author Basel Dadsi
- * @author Benjamina Dow
+ * @author Benjamin Dow
  * @author Julio Renta
  * @version 1.0
  * @since   2018-NOV-20
