@@ -4,7 +4,9 @@ package REMtracker.src.PKGremtracker;
  * Identifies if the USART to TTL controller is connected which is used for initial programming
  * Receives signals data from the ESP-12S module
  *
- * @author  REMtracker Inc.
+ * @author Basel Dadsi
+ * @author Benjamina Dow
+ * @author Julio Renta
  * @version 1.0
  * @since   2018-NOV-22
  */

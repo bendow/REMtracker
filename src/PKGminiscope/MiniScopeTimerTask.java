@@ -5,7 +5,9 @@ package REMtracker.src.PKGminiscope;
  * - compares the difference between two moments
  * - returns ms, us or ns
  *
- * @author  REMtracker Inc.
+ * @author Basel Dadsi
+ * @author Benjamina Dow
+ * @author Julio Renta
  * @version 1.0
  * @since   2018-NOV-20
  */

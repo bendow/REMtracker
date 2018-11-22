@@ -10,7 +10,9 @@ package REMtracker.src.PKGremtracker;
  *  - saving for each profile
  *
  *
- * @author  REMtracker Inc.
+ * @author Basel Dadsi
+ * @author Benjamina Dow
+ * @author Julio Renta
  * @version 1.0
  * @since   2018-NOV-22
  */

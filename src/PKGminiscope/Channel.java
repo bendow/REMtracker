@@ -5,7 +5,9 @@ package REMtracker.src.PKGminiscope;
  * - Wifi Device: A Wifi Device may be selected
  * - Channel Visibility
  *
- * @author  REMtracker Inc.
+ * @author Basel Dadsi
+ * @author Benjamina Dow
+ * @author Julio Renta
  * @version 1.0
  * @since   2018-NOV-20
  */

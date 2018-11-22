@@ -4,7 +4,9 @@ package REMtracker.src.PKGremtracker;
  * (REMtrackerDataModel & REMtrackerPane)
  * The class is used to run the REMtracker App
  *
- * @author  REMtracker Inc.
+ * @author Basel Dadsi
+ * @author Benjamina Dow
+ * @author Julio Renta
  * @version 1.0
  * @since   2018-NOV-22
  */
