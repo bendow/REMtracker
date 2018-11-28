@@ -12,4 +12,6 @@ package REMtracker.src.PKGminiscope;
  * @since   2018-NOV-20
  */
 public class MiniScopeTimerTask {
+  //Constructor with no arguments
+    MiniScopeTimerTask(){}
 }
