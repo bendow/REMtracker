@@ -11,9 +11,15 @@ package REMtracker.src.PKGminiscope;
  */
 
 public class MiniScope {
+    
+    //Global Variables
+    String appName;
+    
+    //Local Variables
 
     //Constructor with no arguments instantiates associative classes
-    MiniScope(){
+    MiniScope(String programName){
+        appName = programName;
         MiniScopeDataModel miniScopeDataModel = new MiniScopeDataModel();
         MiniScopeTimerTask miniScopeTimerTask = new MiniScopeTimerTask();
         MiniScopeEventRelayer miniScopeEventRelayer = new MiniScopeEventRelayer();
