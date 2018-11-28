@@ -11,4 +11,6 @@ package REMtracker.src.PKGminiscope;
  * @since   2018-NOV-20
  */
 public class MiniScopeEventRelayer {
+  //Constructor with no arguments
+    MiniScopeEventRelayer(){}
 }
