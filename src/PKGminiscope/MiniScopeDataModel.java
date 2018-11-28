@@ -16,4 +16,5 @@ public class MiniScopeDataModel {
     MiniScopeDataModel(){
       ChannelFunctions channelFunctions = new ChannelFunctions();
       MiniScopeEnums miniScopeEnums = new MiniScopeEnums();
+    }
 }
