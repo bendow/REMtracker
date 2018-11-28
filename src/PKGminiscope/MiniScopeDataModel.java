@@ -12,4 +12,8 @@ package REMtracker.src.PKGminiscope;
  * @since   2018-NOV-20
  */
 public class MiniScopeDataModel {
+  //Constructor with no arguments instantiates associative classes
+    MiniScopeDataModel(){
+      ChannelFunctions channelFunctions = new ChannelFunctions();
+      MiniScopeEnums miniScopeEnums = new MiniScopeEnums();
 }
