@@ -13,4 +13,6 @@ package REMtracker.src.PKGminiscope;
  * @since   2018-NOV-20
  */
 public class ChannelFunctions {
+  //Constructor with no arguments
+    ChannelFunctions(){}
 }
