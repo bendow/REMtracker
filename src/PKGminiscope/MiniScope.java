@@ -13,12 +13,12 @@ package REMtracker.src.PKGminiscope;
 public class MiniScope {
     
     //Global Variables
-    public String appName;
-    public double version;
-    public MiniScopeDataModel miniScopeDataModel;
-    public MiniScopeTimerTask miniScopeTimerTask;
-    public MiniScopeEventRelayer miniScopeEventRelayer;
-    public Channel scopeChannel;
+    String appName;
+    double version;
+    MiniScopeDataModel miniScopeDataModel;
+    MiniScopeTimerTask miniScopeTimerTask;
+    MiniScopeEventRelayer miniScopeEventRelayer;
+    Channel scopeChannel;
     
     //Local Variables
 
