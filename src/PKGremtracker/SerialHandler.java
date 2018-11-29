@@ -11,4 +11,7 @@ package REMtracker.src.PKGremtracker;
  * @since   2018-NOV-22
  */
 public class SerialHandler {
+
+    //Constructor with no arguments
+    public SerialHandler(){}
 }

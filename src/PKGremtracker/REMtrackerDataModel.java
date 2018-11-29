@@ -1,4 +1,7 @@
 package REMtracker.src.PKGremtracker;
+
+import REMtracker.src.PKGminiscope.MiniScopeDataModel;
+
 /**
  * REMtrackerDataModel inherits from PKGminiscope's MiniScopeDataModel
  * One instance for "RAWdata" and another for "DFT"
@@ -17,4 +20,11 @@ package REMtracker.src.PKGremtracker;
  * @since   2018-NOV-22
  */
 public class REMtrackerDataModel {
+
+    //Constructor with no arguments
+    public REMtrackerDataModel(){
+        MiniScopeDataModel miniScopeDataModel = new MiniScopeDataModel();
+        WiFiHandler wiFiHandler = new WiFiHandler();
+        SerialHandler serialHandler = new SerialHandler();
+    }
 }

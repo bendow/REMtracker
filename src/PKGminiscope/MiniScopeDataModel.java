@@ -12,9 +12,15 @@ package REMtracker.src.PKGminiscope;
  * @since   2018-NOV-20
  */
 public class MiniScopeDataModel {
+
+  //Global Variables
+  public ChannelFunctions channelFunctions;
+  public MiniScopeEnums miniScopeEnums;
+  //Local Variables
+
   //Constructor with no arguments instantiates associative classes
-    MiniScopeDataModel(){
-      ChannelFunctions channelFunctions = new ChannelFunctions();
-      MiniScopeEnums miniScopeEnums = new MiniScopeEnums();
+    public MiniScopeDataModel(){
+      channelFunctions = new ChannelFunctions();
+      miniScopeEnums = new MiniScopeEnums();
     }
 }

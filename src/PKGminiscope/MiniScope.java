@@ -13,16 +13,25 @@ package REMtracker.src.PKGminiscope;
 public class MiniScope {
     
     //Global Variables
-    String appName;
+    public String appName;
+    public double version;
+    public MiniScopeDataModel miniScopeDataModel;
+    public MiniScopeTimerTask miniScopeTimerTask;
+    public MiniScopeEventRelayer miniScopeEventRelayer;
+    public Channel scopeChannel;
     
     //Local Variables
 
-    //Constructor with no arguments instantiates associative classes
-    MiniScope(String programName){
-        appName = programName;
-        MiniScopeDataModel miniScopeDataModel = new MiniScopeDataModel();
-        MiniScopeTimerTask miniScopeTimerTask = new MiniScopeTimerTask();
-        MiniScopeEventRelayer miniScopeEventRelayer = new MiniScopeEventRelayer();
-        Channel scopeChannel = new Channel();
+    //Constructor with no arguments
+    public MiniScope(){}
+
+    //Constructor with arguments instantiating associative classes
+    public MiniScope(String theAppName, double theVersion){
+        this.appName = theAppName;
+        this.version = theVersion;
+        miniScopeDataModel = new MiniScopeDataModel();
+        miniScopeTimerTask = new MiniScopeTimerTask();
+        miniScopeEventRelayer = new MiniScopeEventRelayer();
+        scopeChannel = new Channel();
     }
 }

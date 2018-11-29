@@ -13,4 +13,7 @@ package REMtracker.src.PKGremtracker;
  * @since   2018-NOV-22
  */
 public class REMtrackerPane {
+
+    //Constructor with no arguments
+    REMtrackerPane(){}
 }

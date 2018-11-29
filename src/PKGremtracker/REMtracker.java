@@ -1,4 +1,7 @@
 package REMtracker.src.PKGremtracker;
+
+import REMtracker.src.PKGminiscope.MiniScope;
+
 /**
  * REMtracker inherits from MiniScope and instatiates the follwoing classes:
  * (REMtrackerDataModel & REMtrackerPane)
@@ -11,4 +14,11 @@ package REMtracker.src.PKGremtracker;
  * @since   2018-NOV-22
  */
 public class REMtracker {
+
+    //Constructor with no arguments
+    REMtracker(){
+        MiniScope miniScope = new MiniScope("REM Tracker", 1.0);
+        REMtrackerDataModel reMtrackerDataModel = new REMtrackerDataModel();
+        REMtrackerPane reMtrackerPane = new REMtrackerPane();
+    }
 }
