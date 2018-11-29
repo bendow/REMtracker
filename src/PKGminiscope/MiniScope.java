@@ -35,6 +35,15 @@ public class MiniScope {
         scopeChannel = new Channel();
     }
     
+    //setGUI sets a default GUI by using the data from miniScopeDataModel
+    //Should REMtracker edit the GUI? NO for now - it should however display it
+    public void setGUI(){}
+    
+    
+    
+    
+ 
+    
     
 
 
