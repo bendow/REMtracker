@@ -2,6 +2,8 @@ package REMtracker.src.PKGminiscope;
 /**
  * MiniScope instantiates other framework classes such as:
  * (MiniScopeDataModel, MiniScopeTimerTask, Channel & MiniScopeEventRelayer)
+ * 
+ * setGUI() shows one default scope in the center of a GridPane Layout
  *
  * @author Basel Dadsi
  * @author Benjamin Dow
@@ -33,19 +35,19 @@ public class MiniScope {
         miniScopeTimerTask = new MiniScopeTimerTask();
         miniScopeEventRelayer = new MiniScopeEventRelayer();
         scopeChannel = new Channel();
-
-        setGraph();
-        setMenu();
-        setScope("Raw Data");
     }
-    //Creates a scope
-    public void setScope(String scopeName){}
-
-    //Sets a standard menu with buttons, sliders
-    public void setMenu(){}
-
-    //Sets the graph
-    public void setGraph(){}
+    
+    //setGUI sets a default GUI by using the data from miniScopeDataModel
+    //Should REMtracker edit the GUI? NO for now - it should however display it
+    //This GUI should leave left, right, top & bottom border blank for REMtracker to fill
+    public void setGUI(){}
+    
+    
+    
+    
+ 
+    
+    
 
 
 }
