@@ -2,6 +2,8 @@ package REMtracker.src.PKGminiscope;
 /**
  * MiniScope instantiates other framework classes such as:
  * (MiniScopeDataModel, MiniScopeTimerTask, Channel & MiniScopeEventRelayer)
+ * 
+ * setGUI() shows one default scope in the center of a GridPane Layout
  *
  * @author Basel Dadsi
  * @author Benjamin Dow
