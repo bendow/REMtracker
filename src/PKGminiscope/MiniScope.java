@@ -33,5 +33,19 @@ public class MiniScope {
         miniScopeTimerTask = new MiniScopeTimerTask();
         miniScopeEventRelayer = new MiniScopeEventRelayer();
         scopeChannel = new Channel();
+
+        setGraph();
+        setMenu();
+        setScope("Raw Data");
     }
+    //Creates a scope
+    public void setScope(String scopeName){}
+
+    //Sets a standard menu with buttons, sliders
+    public void setMenu(){}
+
+    //Sets the graph
+    public void setGraph(){}
+
+
 }
