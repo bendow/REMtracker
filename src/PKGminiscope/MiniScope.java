@@ -37,6 +37,7 @@ public class MiniScope {
     
     //setGUI sets a default GUI by using the data from miniScopeDataModel
     //Should REMtracker edit the GUI? NO for now - it should however display it
+    //This GUI should leave left, right, top & bottom border blank for REMtracker to fill
     public void setGUI(){}
     
     
