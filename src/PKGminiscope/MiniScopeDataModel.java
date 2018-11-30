@@ -18,7 +18,7 @@ public class MiniScopeDataModel {
   public MiniScopeEnums miniScopeEnums;
   
   //Local Variables
-  private scopeName;
+  private String scopeName;
 
   //Constructor with no arguments instantiates associative classes
     public MiniScopeDataModel(){
@@ -45,11 +45,15 @@ public class MiniScopeDataModel {
   //I'm thinking that MiniScopeDataModel creates variables like arrays to store data but are empty for REMtrackerDataModel to fill.
   
   //setColors sets the text, background and foreground color
+  public void setColors(){}
   //setCursors sets both cursors for Vertical and Horizontal
+  public void setCursors(){}
   //toggleText toggles the visibility of the text section underneath the graph
+  public void toggleText(){}
   //setGraph sets the graph
+  public void setGraph(){}
   //setButtons sets all of the buttons, sizes, label, visibility and position
-  
+  public void setButtons(){}
   
   
 }

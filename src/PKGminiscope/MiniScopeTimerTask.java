@@ -12,6 +12,18 @@ package REMtracker.src.PKGminiscope;
  * @since   2018-NOV-20
  */
 public class MiniScopeTimerTask {
+
+  //Global Variables
+  public int hour;
+  public int minute;
+  public int second;
+  public int millisecond;
+  public int microsecond;
+
   //Constructor with no arguments
     MiniScopeTimerTask(){}
+
+    //Get the system time
+  public void getSystemTime(){}
+
 }
