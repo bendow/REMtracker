@@ -11,6 +11,7 @@ Package "miniscope" contains the following classes:
 - Channel
 - ChannelFunctions
 - MiniScopeEnum
+- MiniScopeEventRelayer
 
 Package "remtracker" contains the following classes:
 - REMtracker
