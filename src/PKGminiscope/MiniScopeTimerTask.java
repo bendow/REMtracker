@@ -1,9 +1,6 @@
 package REMtracker.src.PKGminiscope;
 
-import javafx.animation.Animation;
-
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 
@@ -13,6 +10,9 @@ import java.util.Date;
  * - compares the difference between two moments
  * - returns ms, us or ns
  *
+ * NOTE: Nyquist Theorem states that the Sampling Frequency should be 2 * max Frequency of data
+ *
+ *
  * @author Basel Dadsi
  * @author Benjamin Dow
  * @author Julio Renta
@@ -21,19 +21,25 @@ import java.util.Date;
  */
 public class MiniScopeTimerTask {
 
-  //Global Variables
-  public int hour;
-  public int minute;
-  public int second;
-  public int millisecond;
-  public int microsecond;
+    //Global Variables
+    public int hour;
+    public int minute;
+    public int second;
+    public int millisecond;
+
+    //Local Variables
+    double samplingFrequency;
+    double dataMaxFrequency;
 
   //Constructor with no arguments
     MiniScopeTimerTask(){
         getSystemTime();
     }
 
-    //Get the system time
+    /*
+     * getSystemTime updates the Military Hour, Minute, Second and Millisecond variables and are publicly available
+     * System.currentTimeMillis() and System.nanoTime() may have discrepancies and thus are left out
+     */
   public void getSystemTime(){
       Date now = new Date();
       SimpleDateFormat dataFormatter = new SimpleDateFormat("H"); //Military time: "H". Std: "h"
@@ -42,19 +48,37 @@ public class MiniScopeTimerTask {
       this.minute = Integer.parseInt(dataFormatter.format(now));
       dataFormatter = new SimpleDateFormat("ss");
       this.second = Integer.parseInt(dataFormatter.format(now));
-      dataFormatter = new SimpleDateFormat("ms");
+      dataFormatter = new SimpleDateFormat("SSSS");
       this.millisecond = Integer.parseInt(dataFormatter.format(now));
 
-      System.out.println("NanoTime: " + System.nanoTime());
-      System.out.println("hour: " + hour);
-      System.out.println("minute: " + minute);
-      System.out.println("second: " + second);
-      System.out.println("millisecond: " + millisecond);
-      System.out.println("NanoTime: " + System.nanoTime());
 
-     // double nanoseconds = (System.nanoTime() - (this.hour*this.minute*this.second*this.millisecond)) ;
-     // System.out.println("Nanoseconds: " + nanoseconds);
 
+      //Printing out for testing purposes
+      //System.out.println("hour: " + hour);
+      //System.out.println("minute: " + minute);
+      //System.out.println("second: " + second);
+      //System.out.println("millisecond: " + millisecond);
+
+      //System.out.println("NanoTime: " + System.nanoTime());
+      //System.out.println("Current time in milliseconds: " + System.currentTimeMillis());
   }
+
+  public void setSamplingFreq(double sampleFreq){
+      this.samplingFrequency = sampleFreq;
+  }
+
+  public double getSamplingFrequency() {
+      return this.samplingFrequency;
+  }
+
+  public void setDataMaxFreq(double dataMaxFreq){
+      this.dataMaxFrequency  = dataMaxFreq;
+  }
+
+  public double getDataMaxFrequency(){
+      return this.dataMaxFrequency;
+  }
+
+
 
 }
