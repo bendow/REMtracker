@@ -28,8 +28,8 @@ public class MiniScopeTimerTask {
     public int millisecond;
 
     //Local Variables
-    double samplingFrequency;
-    double dataMaxFrequency;
+    private double samplingFrequency;
+    private double dataMaxFrequency;
 
   //Constructor with no arguments
     MiniScopeTimerTask(){
