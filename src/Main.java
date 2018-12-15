@@ -1,6 +1,7 @@
 package REMtracker.src;
 
 import REMtracker.src.PKGminiscope.MiniScope;
+import REMtracker.src.PKGremtracker.REMtracker;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +18,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
 
-        MiniScope miniScope = new MiniScope("Hello", 1.0);
+        REMtracker reMtracker = new REMtracker();
+
     }
 
 

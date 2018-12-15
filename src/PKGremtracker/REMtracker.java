@@ -16,7 +16,7 @@ import REMtracker.src.PKGminiscope.MiniScope;
 public class REMtracker {
 
     //Constructor with no arguments
-    REMtracker(){
+   public REMtracker(){
         MiniScope miniScope = new MiniScope("REM Tracker", 1.0);
         REMtrackerDataModel reMtrackerDataModel = new REMtrackerDataModel();
         REMtrackerPane reMtrackerPane = new REMtrackerPane();
