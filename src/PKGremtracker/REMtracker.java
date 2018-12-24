@@ -1,6 +1,7 @@
 package REMtracker.src.PKGremtracker;
 
 import REMtracker.src.PKGminiscope.MiniScope;
+import javafx.stage.Stage;
 
 /**
  * REMtracker inherits from MiniScope and instatiates the follwoing classes:
@@ -16,9 +17,8 @@ import REMtracker.src.PKGminiscope.MiniScope;
 public class REMtracker {
 
     //Constructor with no arguments
-   public REMtracker(){
-        MiniScope miniScope = new MiniScope("REM Tracker", 1.0);
-        REMtrackerDataModel reMtrackerDataModel = new REMtrackerDataModel();
-        REMtrackerPane reMtrackerPane = new REMtrackerPane();
-    }
+    public  REMtracker() {}
+
+
+
 }
