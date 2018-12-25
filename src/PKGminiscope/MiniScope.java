@@ -28,6 +28,7 @@ public class MiniScope {
     Stage primaryStage;
     String appName;
     double version;
+    BorderPane rootLayout;
     MiniScopeDataModel miniScopeDataModel;
     MiniScopeTimerTask miniScopeTimerTask;
     MiniScopeEventRelayer miniScopeEventRelayer;
@@ -43,8 +44,9 @@ public class MiniScope {
         this.appName = theAppName;
         this.version = theVersion;
         this.primaryStage = aStage;
+        rootLayout = new BorderPane();
 
-        miniScopeDataModel = new MiniScopeDataModel();
+        miniScopeDataModel = new MiniScopeDataModel(this.primaryStage, this.rootLayout);
         miniScopeTimerTask = new MiniScopeTimerTask();
         miniScopeEventRelayer = new MiniScopeEventRelayer();
         scopeChannel = new Channel();
@@ -60,9 +62,8 @@ public class MiniScope {
         double screenWidth = screenDimension.getWidth();
         double screenHeight = screenDimension.getHeight();
 
-        Parent root = new BorderPane();
         primaryStage.setTitle(appName + " " + version);
-        primaryStage.setScene(new Scene(root, screenWidth * 0.90, screenHeight * 0.90));
+        primaryStage.setScene(new Scene(rootLayout, screenWidth * 0.90, screenHeight * 0.90));
         primaryStage.show();
     }
 
