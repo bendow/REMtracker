@@ -38,6 +38,7 @@ public class MiniScopeDataModel {
   private Group grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu;
   private StackPane stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
   private Rectangle graph_Rect, results_Rect, controls_Rect, menu_Rect;
+  private VBox center_VBox;
 
 
   //Constructor with no arguments instantiates associative classes
@@ -162,6 +163,14 @@ public class MiniScopeDataModel {
 
       //Place all groups into the center of the BorderPane
       setGroupsToCenterPane();
+
+      //Adjust the alignment of the Scope
+      setScopeAlignment(center_VBox);
+
+  }
+
+  public void setScopeAlignment(VBox aBox){
+      aBox.setTranslateY(20);
   }
 
   public void setScopeLabel(String aName){
@@ -225,14 +234,14 @@ public class MiniScopeDataModel {
   }
 
   public void setGroupsToCenterPane(){
-      //Making a VBox to contain & center the Scope Label and Scope Rectangles
-      VBox scope_VBox = new VBox();
-      scope_VBox.setAlignment(Pos.CENTER);
-      scope_VBox.getChildren().addAll(lbl_scopeName, grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu);
+      //Making a VBox to contain & vertically center the Scope Label and Scope Rectangles
+      center_VBox = new VBox();
+      center_VBox.setAlignment(Pos.CENTER);
+      center_VBox.getChildren().addAll(lbl_scopeName, grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu);
 
       //Fetching the StackPane that is in Center to load it with scopeVBox
       StackPane stPane_Center = (StackPane)rootLayout.getCenter();
-      stPane_Center.getChildren().add(scope_VBox);
+      stPane_Center.getChildren().add(center_VBox);
   }
 
   public void loadStackPanes(){
