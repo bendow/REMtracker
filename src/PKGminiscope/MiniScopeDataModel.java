@@ -1,5 +1,6 @@
 package REMtracker.src.PKGminiscope;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -67,7 +68,7 @@ public class MiniScopeDataModel {
   public void stylizeGUI(){
     setBorder();
     rootLayout.setBorder(this.border);
-    double screenWidth = getScreenDimensions().getWidth()*.95;
+    double screenWidth = getScreenDimensions().getWidth() * 0.95;
     double screenHeight = getScreenDimensions().getHeight();
 
       //Top pane
@@ -75,6 +76,7 @@ public class MiniScopeDataModel {
       rect_TopPane.setStroke(Color.BLACK);
       rect_TopPane.setFill(Color.TRANSPARENT);
       rect_TopPane.setWidth(screenWidth);
+      rect_TopPane.setTranslateX(-3); //Shifting so the borders overlap
       rect_TopPane.setHeight(screenHeight * 0.10);
       StackPane stPane_Top = new StackPane();
       stPane_Top.getChildren().add(rect_TopPane);
@@ -85,16 +87,19 @@ public class MiniScopeDataModel {
       rect_LeftPane.setStroke(Color.BLACK);
       rect_LeftPane.setFill(Color.TRANSPARENT);
       rect_LeftPane.setWidth(screenWidth * 0.10);
+      rect_LeftPane.setTranslateX(-3);
       rect_LeftPane.setHeight(screenHeight * 0.75);
       StackPane stPane_Left = new StackPane();
       stPane_Left.getChildren().add(rect_LeftPane);
       rootLayout.setLeft(stPane_Left);
+
 
       //Right Pane
       Rectangle rect_RightPane = new Rectangle();
       rect_RightPane.setStroke(Color.BLACK);
       rect_RightPane.setFill(Color.TRANSPARENT);
       rect_RightPane.setWidth(screenWidth * 0.10);
+      rect_RightPane.setTranslateX(-5);
       rect_RightPane.setHeight(screenHeight * 0.75);
       StackPane stPane_Right = new StackPane();
       stPane_Right.getChildren().add(rect_RightPane);
@@ -105,6 +110,7 @@ public class MiniScopeDataModel {
       rect_BottomPane.setStroke(Color.BLACK);
       rect_BottomPane.setFill(Color.TRANSPARENT);
       rect_BottomPane.setWidth(screenWidth);
+      rect_BottomPane.setTranslateX(-3);
       rect_BottomPane.setHeight(screenHeight * 0.10);
       StackPane stPane_Bottom = new StackPane();
       stPane_Bottom.getChildren().add(rect_BottomPane);
@@ -114,9 +120,12 @@ public class MiniScopeDataModel {
       Rectangle rect_CenterPane = new Rectangle();
       rect_CenterPane.setStroke(Color.BLACK);
       rect_CenterPane.setFill(Color.TRANSPARENT);
-      rect_CenterPane.setWidth(screenWidth - (2 * rect_LeftPane.getWidth())*.9);
+      rect_CenterPane.setWidth(screenWidth - (2 * rect_LeftPane.getWidth()) );
+      rect_CenterPane.setTranslateX(-4);
       rect_CenterPane.setHeight(rect_LeftPane.getHeight());
-      rootLayout.setCenter(rect_CenterPane);
+      StackPane stPane_Center = new StackPane();
+      stPane_Center.getChildren().add(rect_CenterPane);
+      rootLayout.setCenter(stPane_Center);
   }
 
 
@@ -137,11 +146,13 @@ public class MiniScopeDataModel {
       Rectangle values_Rect = new Rectangle(500,100);
       values_Rect.setFill(Color.WHITE);
       values_Rect.setStroke(Color.BLACK);
+      values_Rect.setTranslateY(-3);
 
       //Scope Section: Controls
       Rectangle controls_Rect = new Rectangle(500, 150);
       controls_Rect.setFill(Color.WHITE);
       controls_Rect.setStroke(Color.BLACK);
+      controls_Rect.setTranslateY(10);
 
       //Scope Section: Hidden Menu
       Rectangle menu_Rect = new Rectangle(500,100);
@@ -149,24 +160,16 @@ public class MiniScopeDataModel {
       menu_Rect.setStroke(Color.BLACK);
       menu_Rect.setVisible(false);
 
-      //Getting a box to act as a space
-      //This part can be redone once we know how to add a space another way between items in a VBox
-      VBox spaceBox = new VBox();
-      spaceBox.getChildren().add(new Rectangle(500,10, Color.TRANSPARENT));
-
       //Making a box to contain all scope display items
       VBox scope_VBox = new VBox();
       scope_VBox.setAlignment(Pos.CENTER);
-      scope_VBox.getChildren().addAll(lbl_scopeName, scopeRect, values_Rect, spaceBox, controls_Rect, menu_Rect);
+      scope_VBox.setTranslateY(20);
+      scope_VBox.getChildren().addAll(lbl_scopeName, scopeRect, values_Rect, controls_Rect, menu_Rect);
 
-      //Making a group to store all scope items
-      Group miniScopeGroup = new Group();
+      //Fetching the StackPane that is in Center to load it with scopeVBox
+      StackPane stPane_Center = (StackPane)rootLayout.getCenter();
+      stPane_Center.getChildren().add(scope_VBox);
 
-      miniScopeGroup.getChildren().add(scope_VBox);
-
-  //Place all the contents in the center of the layout
-    //rootLayout.setCenter(miniScopeGroup);
-      rootLayout.setCenter(scope_VBox);
 
   }
   
