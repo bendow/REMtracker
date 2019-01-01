@@ -5,7 +5,10 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderWidths;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -51,27 +54,26 @@ public class MiniScope {
         miniScopeEventRelayer = new MiniScopeEventRelayer();
         scopeChannel = new Channel();
 
-        setGUI();
+        setStage();
     }
-    
-    //setGUI sets a default GUI by using the data from miniScopeDataModel
-    //This GUI should leave left, right, top & bottom border blank for REMtracker to fill
-    public void setGUI(){
-        Rectangle2D screenDimension;
-        screenDimension = getScreenSpecs();
-        double screenWidth = screenDimension.getWidth();
-        double screenHeight = screenDimension.getHeight();
+
+    //setStage sets a scene with a pane layout and scene dimensions
+    public void setStage(){
+        double scaleValue = 0.95;
+        double sceneWidth = getScreenDimensions().getWidth() * scaleValue;
+        double sceneHeight = getScreenDimensions().getHeight() * scaleValue;
 
         primaryStage.setTitle(appName + " " + version);
-        primaryStage.setScene(new Scene(rootLayout, screenWidth * 0.90, screenHeight * 0.90));
+        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(rootLayout, sceneWidth, sceneHeight));
         primaryStage.show();
     }
 
-    public Rectangle2D getScreenSpecs(){
-        return Screen.getPrimary().getVisualBounds();
+    //Getting Screen Dimensions
+    public Rectangle2D getScreenDimensions(){
+        return new Rectangle2D(0,0,Screen.getPrimary().getVisualBounds().getWidth(),
+                                               Screen.getPrimary().getVisualBounds().getHeight());
     }
-    
-    
     
     
  
