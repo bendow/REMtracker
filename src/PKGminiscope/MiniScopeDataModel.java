@@ -1,16 +1,13 @@
 package REMtracker.src.PKGminiscope;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -37,6 +34,11 @@ public class MiniScopeDataModel {
   private Stage primaryStage;
   private BorderPane rootLayout;
   private Border border;
+  private Label lbl_scopeName;
+  private Group grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu;
+  private StackPane stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
+  private Rectangle graph_Rect, results_Rect, controls_Rect, menu_Rect;
+
 
   //Constructor with no arguments instantiates associative classes
   public MiniScopeDataModel(){}
@@ -64,7 +66,7 @@ public class MiniScopeDataModel {
                 Screen.getPrimary().getVisualBounds().getHeight());
     }
 
-  //stylizeGUI sets BorderPane borders and sizes for all regions: top, bot, left, right - except center
+  //stylizeGUI sets BorderPane borders and sizes for all regions: top, bot, left, right & center
   public void stylizeGUI(){
     setBorder();
     rootLayout.setBorder(this.border);
@@ -132,45 +134,81 @@ public class MiniScopeDataModel {
   //Set up a default scope with all buttons, sliders, graph, etc...
   public void setScope(String aScopeName){
 
+      //Setup the Scope label
+      setScopeLabel(aScopeName);
+
+      //Setup groups for all scope sections(Graph, Results, Controls, HiddenMenu)
+      setScopeGroups();
+
+      //Setup the StackPanes for all scope sections(Graph, Results, Controls, HiddenMenu)
+      setScopeStackPanes();
+
+      //Setup all rectangles for the scope
+      setScopeRectangles();
+
+      //Setup the Graph area of this scope
+
+      //Setup the Results area of this scope
+
+      //Setup the Controls area of this scope
+
+      //Setup the Hidden Menu area of this scope
+
+      //load Groups
+      loadGroups();
+
+      //Place all groups into the center of the BorderPane
+      setGroupsToCenterPane();
+  }
+
+  public void setScopeLabel(String aName){
       //Scope Section: Name
-      this.scopeName = aScopeName;
-      Label lbl_scopeName = new Label(this.scopeName);
+      this.scopeName = aName;
+      lbl_scopeName = new Label(this.scopeName);
       lbl_scopeName.setFont(Font.font(20));
+  }
+
+  public void setScopeGroups(){
+      grp_Graph = new Group();
+
+      grp_Results = new Group();
+      grp_Results.setTranslateY(-3);
+
+      grp_Controls = new Group();
+      grp_Controls.setTranslateY(20);
+
+      grp_HiddenMenu = new Group();
+  }
+
+  public void setScopeStackPanes(){
+      stPane_Graph = new StackPane();
+      stPane_Results = new StackPane();
+      stPane_Controls = new StackPane();
+      stPane_HiddenMenu = new StackPane();
+  }
+
+  public void setScopeRectangles(){
 
       //Scope Section: Graph
-      Rectangle scopeRect = new Rectangle(500,350);
-      scopeRect.setFill(Color.WHITE);
-      scopeRect.setStroke(Color.BLACK);
+      graph_Rect = new Rectangle(500,350);
+      graph_Rect.setFill(Color.WHITE);
+      graph_Rect.setStroke(Color.BLACK);
 
-      //Scope Section: Values
-      Rectangle values_Rect = new Rectangle(500,100);
-      values_Rect.setFill(Color.WHITE);
-      values_Rect.setStroke(Color.BLACK);
-      values_Rect.setTranslateY(-3);
+      //Scope Section: Results
+      results_Rect = new Rectangle(500,100);
+      results_Rect.setFill(Color.WHITE);
+      results_Rect.setStroke(Color.BLACK);
 
       //Scope Section: Controls
-      Rectangle controls_Rect = new Rectangle(500, 150);
+      controls_Rect = new Rectangle(500, 150);
       controls_Rect.setFill(Color.WHITE);
       controls_Rect.setStroke(Color.BLACK);
-      controls_Rect.setTranslateY(10);
 
       //Scope Section: Hidden Menu
-      Rectangle menu_Rect = new Rectangle(500,100);
+      menu_Rect = new Rectangle(500,100);
       menu_Rect.setFill(Color.WHITE);
       menu_Rect.setStroke(Color.BLACK);
       menu_Rect.setVisible(false);
-
-      //Making a box to contain all scope display items
-      VBox scope_VBox = new VBox();
-      scope_VBox.setAlignment(Pos.CENTER);
-      scope_VBox.setTranslateY(20);
-      scope_VBox.getChildren().addAll(lbl_scopeName, scopeRect, values_Rect, controls_Rect, menu_Rect);
-
-      //Fetching the StackPane that is in Center to load it with scopeVBox
-      StackPane stPane_Center = (StackPane)rootLayout.getCenter();
-      stPane_Center.getChildren().add(scope_VBox);
-
-
   }
   
   //Let the scope be renamed
@@ -182,20 +220,22 @@ public class MiniScopeDataModel {
   public String getScopeName(){
     return this.scopeName;
   }
-  
-  //Should the data be handled in REMtrackerDataModel leaving the MiniScopeDataModel as a framework?
-  //I'm thinking that MiniScopeDataModel creates variables like arrays to store data but are empty for REMtrackerDataModel to fill.
-  
-  //setColors sets the text, background and foreground color
-  public void setColors(){}
-  //setCursors sets both cursors for Vertical and Horizontal
-  public void setCursors(){}
-  //toggleText toggles the visibility of the text section underneath the graph
-  public void toggleText(){}
-  //setGraph sets the graph
-  public void setGraph(){}
-  //setButtons sets all of the buttons, sizes, label, visibility and position
-  public void setButtons(){}
-  
-  
+
+  public void setGroupsToCenterPane(){
+      //Making a VBox to contain & center the Scope Label and Scope Rectangles
+      VBox scope_VBox = new VBox();
+      scope_VBox.setAlignment(Pos.CENTER);
+      scope_VBox.getChildren().addAll(lbl_scopeName, grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu);
+
+      //Fetching the StackPane that is in Center to load it with scopeVBox
+      StackPane stPane_Center = (StackPane)rootLayout.getCenter();
+      stPane_Center.getChildren().add(scope_VBox);
+  }
+
+  public void loadGroups(){
+      grp_Graph.getChildren().add(graph_Rect);
+      grp_Results.getChildren().add(results_Rect);
+      grp_Controls.getChildren().add(controls_Rect);
+      grp_HiddenMenu.getChildren().add(menu_Rect);
+  }
 }
