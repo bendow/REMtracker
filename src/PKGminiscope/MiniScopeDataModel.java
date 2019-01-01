@@ -154,6 +154,9 @@ public class MiniScopeDataModel {
 
       //Setup the Hidden Menu area of this scope
 
+      //Load StackPanes
+      loadStackPanes();
+
       //load Groups
       loadGroups();
 
@@ -232,10 +235,17 @@ public class MiniScopeDataModel {
       stPane_Center.getChildren().add(scope_VBox);
   }
 
+  public void loadStackPanes(){
+      stPane_Graph.getChildren().add(graph_Rect);
+      stPane_Results.getChildren().add(results_Rect);
+      stPane_Controls.getChildren().add(controls_Rect);
+      stPane_HiddenMenu.getChildren().add(menu_Rect);
+  }
+
   public void loadGroups(){
-      grp_Graph.getChildren().add(graph_Rect);
-      grp_Results.getChildren().add(results_Rect);
-      grp_Controls.getChildren().add(controls_Rect);
-      grp_HiddenMenu.getChildren().add(menu_Rect);
+      grp_Graph.getChildren().add(stPane_Graph);
+      grp_Results.getChildren().add(stPane_Results);
+      grp_Controls.getChildren().add(stPane_Controls);
+      grp_HiddenMenu.getChildren().add(stPane_HiddenMenu);
   }
 }
