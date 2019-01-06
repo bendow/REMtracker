@@ -15,18 +15,18 @@ import javafx.stage.Stage;
 /**
  * MiniScope instantiates other framework classes such as:
  * (MiniScopeDataModel, MiniScopeTimerTask, Channel & MiniScopeEventRelayer)
- * 
+ * <p>
  * setGUI() shows one default scope in the center of a GridPane Layout
  *
  * @author Basel Dadsi
  * @author Benjamin Dow
  * @author Julio Renta
  * @version 1.0
- * @since   2018-NOV-20
+ * @since 2018-NOV-20
  */
 
 public class MiniScope {
-    
+
     //Global Variables
     Stage primaryStage;
     String appName;
@@ -36,14 +36,15 @@ public class MiniScope {
     MiniScopeTimerTask miniScopeTimerTask;
     MiniScopeEventRelayer miniScopeEventRelayer;
     Channel scopeChannel;
-    
+
     //Local Variables
 
     //Constructor with no arguments
-    public MiniScope(){}
+    public MiniScope() {
+    }
 
 
-    public MiniScope(String theAppName, double theVersion, Stage aStage){
+    public MiniScope(String theAppName, double theVersion, Stage aStage) {
         this.appName = theAppName;
         this.version = theVersion;
         this.primaryStage = aStage;
@@ -58,7 +59,7 @@ public class MiniScope {
     }
 
     //setStage sets a scene with a pane layout and scene dimensions
-    public void setStage(){
+    public void setStage() {
         double scaleValue = 0.95;
         double sceneWidth = getScreenDimensions().getWidth() * scaleValue;
         double sceneHeight = getScreenDimensions().getHeight() * scaleValue;
@@ -70,15 +71,10 @@ public class MiniScope {
     }
 
     //Getting Screen Dimensions
-    public Rectangle2D getScreenDimensions(){
-        return new Rectangle2D(0,0,Screen.getPrimary().getVisualBounds().getWidth(),
-                                               Screen.getPrimary().getVisualBounds().getHeight());
+    public Rectangle2D getScreenDimensions() {
+        return new Rectangle2D(0, 0, Screen.getPrimary().getVisualBounds().getWidth(),
+                Screen.getPrimary().getVisualBounds().getHeight());
     }
-    
-    
- 
-    
-    
 
 
 }

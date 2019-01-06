@@ -3,7 +3,7 @@ package REMtracker.src.PKGremtracker;
  * SerialHandler sends AT Commands to the ESP-12S
  * Identifies if the USART to TTL controller is connected which is used for initial programming
  * Receives signals data from the ESP-12S module
- *
+ * <p>
  * JSerial was going to be used but had some issues with native calls so moving to jSerialComm
  * http://fazecast.github.io/jSerialComm/
  *
@@ -11,7 +11,7 @@ package REMtracker.src.PKGremtracker;
  * @author Benjamin Dow
  * @author Julio Renta
  * @version 1.0
- * @since   2018-NOV-22
+ * @since 2018-NOV-22
  */
 
 import com.fazecast.jSerialComm.*;
@@ -34,32 +34,32 @@ public class SerialHandler {
             names[i] = commPorts[i].getSystemPortName();
             System.out.println("CommPort: " + commPorts[i] + ", i = " + i);
             System.out.println("DescriptivePortName: " + commPorts[i].getDescriptivePortName());
-            System.out.println("PortDescription: " + commPorts[i].getPortDescription() );
+            System.out.println("PortDescription: " + commPorts[i].getPortDescription());
             System.out.println("SystemPortName: " + commPorts[i].getSystemPortName());
             System.out.println("");
         }
 
     }
 
-    public enum endLine{
+    public enum endLine {
         BOTH_NL_and_CR,
         CARRIAGE_RETURN,
         NEWLINE,
         NO_LINE_ENDING
     }
 
-    public void isCommPortAvailable(int port){
+    public void isCommPortAvailable(int port) {
         Boolean availableStatus = commPorts[2].isOpen();
-        if(availableStatus)
+        if (availableStatus)
             System.out.println("Com port [" + port + "] is not Open");
         else
             System.out.println("Comm port [" + port + "] is Open with " +
                     commPorts[port].getPortDescription());
     }
 
-    public void openPort(int port){
+    public void openPort(int port) {
         byte[] byteArray;
-        long alongVar  = 1;
+        long alongVar = 1;
         commPorts[port].openPort();
 
         System.out.println("Current BaudRate: " + commPorts[port].getBaudRate());
@@ -74,11 +74,6 @@ public class SerialHandler {
         commPorts[port].closePort();
 
     }
-
-
-
-
-
 
 
 }

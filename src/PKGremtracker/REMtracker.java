@@ -12,13 +12,13 @@ import javafx.stage.Stage;
  * @author Benjamin Dow
  * @author Julio Renta
  * @version 1.0
- * @since   2018-NOV-22
+ * @since 2018-NOV-22
  */
 public class REMtracker {
 
     //Constructor with no arguments
-    public  REMtracker() {}
-
+    public REMtracker() {
+    }
 
 
 }
