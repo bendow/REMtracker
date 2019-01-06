@@ -1,13 +1,16 @@
 package REMtracker.src.PKGminiscope;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -39,6 +42,8 @@ public class MiniScopeDataModel {
   private StackPane stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
   private Rectangle graph_Rect, results_Rect, controls_Rect, menu_Rect;
   private VBox center_VBox;
+  private Text text1, text2, text3, text4, text5, text6, text7, text8, text9;
+  private GridPane grPane_Results;
 
 
   //Constructor with no arguments instantiates associative classes
@@ -50,22 +55,10 @@ public class MiniScopeDataModel {
     channelFunctions = new ChannelFunctions();
     miniScopeEnums = new MiniScopeEnums();
     stylizeGUI();
-    setScope("MiniScope");
+    initScope("MiniScope");
   }
 
-  //setBorder sets the borders around each of the borderpane's sections(top, bottom, left, right & center)
-  public void setBorder(){
-    this.border = new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
-  }
-  public Border getBorder(){
-    return this.border;
-  }
 
-    //Getting Screen Dimensions
-    public Rectangle2D getScreenDimensions(){
-        return new Rectangle2D(0,0, Screen.getPrimary().getVisualBounds().getWidth(),
-                Screen.getPrimary().getVisualBounds().getHeight());
-    }
 
   //stylizeGUI sets BorderPane borders and sizes for all regions: top, bot, left, right & center
   public void stylizeGUI(){
@@ -131,9 +124,8 @@ public class MiniScopeDataModel {
       rootLayout.setCenter(stPane_Center);
   }
 
-
   //Set up a default scope with all buttons, sliders, graph, etc...
-  public void setScope(String aScopeName){
+  public void initScope(String aScopeName){
 
       //Setup the Scope label
       setScopeLabel(aScopeName);
@@ -147,14 +139,6 @@ public class MiniScopeDataModel {
       //Setup all rectangles for the scope
       setScopeRectangles();
 
-      //Setup the Graph area of this scope
-
-      //Setup the Results area of this scope
-
-      //Setup the Controls area of this scope
-
-      //Setup the Hidden Menu area of this scope
-
       //Load StackPanes
       loadStackPanes();
 
@@ -167,7 +151,92 @@ public class MiniScopeDataModel {
       //Adjust the alignment of the Scope
       setScopeAlignment(center_VBox);
 
+      //Setup the Graph area of this scope
+
+      //Setup the Results area of this scope
+      setupResultsSection();
+
+
+      //Setup the Controls area of this scope
+
+      //Setup the Hidden Menu area of this scope
+
+
+
   }
+    /**
+     * This section consists of a 3x3 grid
+     * Each cell will include A Title, A Value and A Unit of Measurement
+     * Keep in mind that the area is limited to the area provided by the results_Rect
+     */
+  public void setupResultsSection(){
+      grPane_Results = new GridPane();
+      text1 = new Text();
+      text2 = new Text();
+      text3 = new Text();
+      setResultText1(new Text("Max V: 100mV"));
+      setResultText2(new Text("Min V: 0mV"));
+      setResultText3(new Text("Counts/s: 1024"));
+      grPane_Results.add(text1, 0, 0);
+      grPane_Results.add(text2,0,1);
+      grPane_Results.add(text3, 0,2);
+
+      text4 = new Text();
+      text5 = new Text();
+      text6 = new Text();
+      setResultsText4(new Text("Peak V: 99mV"));
+      setResultsText5(new Text("RMS V: 69.99mV"));
+      setResultsText6(new Text("VACANT"));
+      grPane_Results.add(text4,1,0);
+      grPane_Results.add(text5, 1,1);
+      grPane_Results.add(text6, 1,2);
+
+      text7 = new Text();
+      text8 = new Text();
+      text9 = new Text();
+      setResultsText7(new Text("VACANT"));
+      setResultsText8(new Text("VACANT"));
+      setResultsText9(new Text("VACANT"));
+      grPane_Results.add(text7,2,0);
+      grPane_Results.add(text8, 2,1);
+      grPane_Results.add(text9, 2,2);
+
+
+
+
+
+      //stPane_Results.getChildren().add(grPane_Results.getChildren().get(1));
+      stPane_Results.getChildren().add(grPane_Results);
+      grPane_Results.setHgap(85);
+      grPane_Results.setVgap(10);
+      grPane_Results.setAlignment(Pos.CENTER);
+  }
+
+  public void setResultText1(Text aText){ text1 = aText; }
+  public void setResultText2(Text aText){ text2 = aText; }
+  public void setResultText3(Text aText){ text3 = aText; }
+  public void setResultsText4(Text aText){ text4 = aText; }
+  public void setResultsText5(Text aText){ text5 = aText; }
+  public void setResultsText6(Text aText){ text6 = aText; }
+  public void setResultsText7(Text aText){ text7 = aText; }
+  public void setResultsText8(Text aText){ text8 = aText; }
+  public void setResultsText9(Text aText){ text9 = aText; }
+
+
+
+  //setBorder sets the borders around each of the borderpane's sections(top, bottom, left, right & center)
+  public void setBorder(){
+        this.border = new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+    }
+  public Border getBorder(){
+        return this.border;
+    }
+
+  //Getting Screen Dimensions
+  public Rectangle2D getScreenDimensions(){
+        return new Rectangle2D(0,0, Screen.getPrimary().getVisualBounds().getWidth(),
+                Screen.getPrimary().getVisualBounds().getHeight());
+    }
 
   public void setScopeAlignment(VBox aBox){
       aBox.setTranslateY(20);
