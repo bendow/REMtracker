@@ -1,10 +1,11 @@
 package REMtracker.src.PKGminiscope;
 
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
+import javafx.geometry.*;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -12,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 /**
  * MiniScopeDataModel instantiates the objects necessary for producing the GUI
@@ -208,6 +210,7 @@ public class MiniScopeDataModel {
     }
 
     private void setupControlsSection(){
+        //*****START OF 1ST COLUMN IN CONTROLS**********
         HBox hbox_controls_COL1, hbox_controls_COL2, hbox_controls_COL3, hbox_controls_COL4, hbox_controls_COL5;
         hbox_controls_COL1 = new HBox();
         VBox vbox_controls_buttons = new VBox();
@@ -223,16 +226,140 @@ public class MiniScopeDataModel {
         HBox hbox_grid_TextButton = new HBox(btn_Grid, btn_Text);
         hbox_grid_TextButton.setSpacing(5);
 
-        vbox_controls_buttons.getChildren().addAll(btn_Channel, hbox_grid_TextButton, btn_Cursors, btn_Menu);
-        hbox_controls_COL1.getChildren().add(vbox_controls_buttons);
+        Separator separator = new Separator();
+        separator.setOrientation(Orientation.VERTICAL);
+        separator.setTranslateX(0);
+        separator.setScaleY(separator.getScaleY()*.9);
 
-        stPane_Controls.getChildren().add(hbox_controls_COL1);
+        Separator separator2 = new Separator();
+        separator2.setOrientation(Orientation.VERTICAL);
+        separator2.setTranslateX(-15);
+        separator2.setScaleY(separator2.getScaleY()*.9);
+
+        Separator separator3 = new Separator();
+        separator3.setOrientation(Orientation.VERTICAL);
+        separator3.setTranslateX(-15);
+        separator3.setScaleY(separator3.getScaleY()*.9);
+
+        vbox_controls_buttons.getChildren().addAll(btn_Channel, hbox_grid_TextButton, btn_Cursors, btn_Menu);
 
         btn_Channel.setPrefWidth(85);
         btn_Grid.setPrefWidth(40);
         btn_Text.setPrefWidth(40);
         btn_Cursors.setPrefWidth(85);
         btn_Menu.setPrefWidth(85);
+
+        hbox_controls_COL1.getChildren().add(vbox_controls_buttons);
+        //*****END OF 1ST COLUMN IN CONTROLS************
+
+
+
+        //*****START OF 2ND COLUMN IN CONTROLS**********
+        Text txt_VertCursor = new Text("Vert Cursor");
+        txt_VertCursor.setFont(new Font(16));
+        Slider sldr_VertCursor = new Slider();
+        sldr_VertCursor.setOrientation(Orientation.VERTICAL);
+        sldr_VertCursor.setPrefSize(10, 110);
+        Button btn_VCursor_A = new Button("A");
+        Button btn_VCursor_B = new Button("B");
+        btn_VCursor_B.setTranslateY(60);
+        btn_VCursor_A.setTranslateX(10);
+        btn_VCursor_B.setTranslateX(10);
+        sldr_VertCursor.setShowTickLabels(true);
+        sldr_VertCursor.setMajorTickUnit(100);
+        sldr_VertCursor.setMinorTickCount(0);
+        sldr_VertCursor.setShowTickLabels(true);
+        sldr_VertCursor.setLabelFormatter(new StringConverter<Double>() {
+            @Override
+            public String toString(Double object) {
+                if(object == 100) return "UP";
+                if(object == 0) return "DN";
+                return "DN";
+            }
+
+            @Override
+            public Double fromString(String string) {
+                switch(string){
+                    case "UP":
+                        return 1d;
+                    case "DN":
+                        return 0d;
+                    default:
+                        return 1d;
+                }
+            }
+        });
+
+        //VBox vbox_UpDn = new VBox(txt_VertCursor_UP, txt_VertCursor_DN);
+        VBox vbox_btnUP_btnDN =  new VBox(btn_VCursor_A, btn_VCursor_B);
+        HBox hbox_VertCursor = new HBox(sldr_VertCursor, vbox_btnUP_btnDN);
+        hbox_VertCursor.setAlignment(Pos.CENTER);
+        hbox_VertCursor.setSpacing(10);
+        VBox vbox_VertCursor = new VBox(txt_VertCursor, hbox_VertCursor);
+        vbox_VertCursor.setAlignment(Pos.CENTER);
+        vbox_VertCursor.setTranslateX(-10);
+
+
+
+        hbox_controls_COL2 = new HBox();
+        hbox_controls_COL2.getChildren().add(vbox_VertCursor);
+        hbox_controls_COL2.setAlignment(Pos.CENTER);
+        //*****END OF 2ND COLUMN IN CONTROLS************
+
+
+        //*****START OF 3RD COLUMN IN CONTROLS**********
+        Text txt_Hort_Cursor = new Text("Hort Cursor");
+        txt_Hort_Cursor.setFont(new Font(16));
+        Slider sldr_HortCursor = new Slider(0,100,50);
+        sldr_HortCursor.setPrefSize(75,10);
+        sldr_HortCursor.setShowTickLabels(true);
+        sldr_HortCursor.setMajorTickUnit(100);
+        sldr_HortCursor.setMinorTickCount(0);
+        sldr_HortCursor.setShowTickLabels(true);
+        sldr_HortCursor.setLabelFormatter(new StringConverter<Double>() {
+            @Override
+            public String toString(Double object) {
+                if(object == 0) return "Left";
+                if(object == 100) return "Right";
+                return "Right";
+            }
+
+            @Override
+            public Double fromString(String string) {
+                switch(string){
+                    case "Left":
+                        return 0d;
+                    case "Right":
+                        return 1d;
+                    default:
+                        return 1d;
+                }
+            }
+        });
+        Button btn_HortCursorA = new Button("A");
+        Button btn_HortCursorB = new Button("B");
+        btn_HortCursorB.setTranslateX(40);
+        hbox_controls_COL3 = new HBox();
+        VBox vbox_controls_COL3 = new VBox(txt_Hort_Cursor, sldr_HortCursor, new HBox(btn_HortCursorA, btn_HortCursorB));
+        vbox_controls_COL3.setAlignment(Pos.CENTER);
+        vbox_controls_COL3.setSpacing(15);
+        hbox_controls_COL3.getChildren().add(vbox_controls_COL3);
+        hbox_controls_COL3.setTranslateX(-20);
+        //*****END OF 3RD COLUMN IN CONTROLS************
+
+        //*****START OF 4TH COLUMN IN CONTROLS**********
+        //*****END OF 4TH COLUMN IN CONTROLS************
+
+        //*****START OF 5TH COLUMN IN CONTROLS**********
+        //*****END OF 5TH COLUMN IN CONTROLS************
+
+
+
+
+        HBox hbox_Controls = new HBox();
+        hbox_Controls.setSpacing(10);
+        hbox_Controls.getChildren().addAll(hbox_controls_COL1, separator, hbox_controls_COL2, separator2, hbox_controls_COL3, separator3);
+        stPane_Controls.getChildren().addAll(hbox_Controls);
     }
 
     private void loadStackPanes() {
