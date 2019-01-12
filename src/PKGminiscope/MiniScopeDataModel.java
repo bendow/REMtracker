@@ -3,6 +3,9 @@ package REMtracker.src.PKGminiscope;
 import javafx.geometry.*;
 import javafx.scene.Group;
 import javafx.scene.chart.Chart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -155,6 +158,7 @@ public class MiniScopeDataModel {
         setScopeAlignment(center_VBox);
 
         //Setup the Graph area of this scope
+        setupGrid(graph_Rect);
 
         //Setup the Results area of this scope
         setupResultsSection();
@@ -166,10 +170,39 @@ public class MiniScopeDataModel {
 
     }
 
-    private void setupGrid(Rectangle2D  aRect){
+    private void setupGrid(Rectangle  aRect){
         //Place the Grid in the "stPane_Graph" StackPane
         //The dimensions of the grid is that of "graph_Rect"
+        //The LineChart will be used to show the data from the XYChart.Series Class
+        final NumberAxis xAxis = new NumberAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("TIME");
+        yAxis.setLabel("Voltage");
 
+
+        final LineChart<Number, Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);
+
+        XYChart.Series series = new XYChart.Series();
+        series.setName("Raw Data"); //This name can be a variable so that it changes when the Channel is changed
+        //The X and Y values depend on the scale chosen; therefore it would look something like this:
+        //TBD
+        series.getData().addAll(new XYChart.Data(0,3),
+                new XYChart.Data(1,20),
+                new XYChart.Data(2,50),
+                new XYChart.Data(3,87),
+                new XYChart.Data(4,99),
+                new XYChart.Data(5,20),
+                new XYChart.Data(6,50),
+                new XYChart.Data(7,87),
+                new XYChart.Data(8,99));
+
+        lineChart.getData().add(series);
+        lineChart.setPrefSize(aRect.getWidth(),aRect.getHeight());
+        lineChart.setMinSize(aRect.getWidth(),aRect.getHeight());
+        lineChart.setMaxSize(aRect.getWidth(), aRect.getHeight());
+
+
+        stPane_Graph.getChildren().add(lineChart);
     }
 
     private void setupResultsSection() {
