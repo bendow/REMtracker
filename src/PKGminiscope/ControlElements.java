@@ -1,9 +1,15 @@
 package REMtracker.src.PKGminiscope;
 
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Separator;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 
 /**
  * ControlElements is a helper class that helps to create the sections within the control section
@@ -23,10 +29,8 @@ import javafx.scene.text.Text;
  */
 public class ControlElements {
     private VBox col_1_VBox = new VBox();
-    private VBox col_2_VBox = new VBox();
-    private VBox col_3_VBox = new VBox();
-    private VBox col_4_VBox = new VBox();
-    private VBox col_5_VBox = new VBox();
+    private VBox vbox_ControlVertical_Template;
+    private VBox vbox_ControlHorizontal_Template;
 
     //Constructor
     public ControlElements() {}
@@ -56,39 +60,116 @@ public class ControlElements {
 
 
 
-    //**************************COLUMN 2 SECTION*******************************
-    public VBox getColumn_2_VBox(){return col_2_VBox;}
-    public void setColumn_2_VBox(){
+    //************************HELPER SETTER METHODS*****************************
+    public void setVbox_ControlVertical_Template(String label, String btn1_Label, String btn2_Label, String btn3_Label,
+                                                 String sliderTopLabel, String sliderLowerLabel){
 
+        Slider slider = new Slider();
+        slider.setOrientation(Orientation.VERTICAL);
+        slider.setPrefSize(10, 110);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit(100);
+        slider.setMinorTickCount(0);
+
+        vbox_ControlVertical_Template = new VBox();
+
+        Button btn1 = new Button(btn1_Label);
+        Button btn2 = new Button(btn2_Label);
+        Button btn3 = new Button(btn3_Label);
+        int btnWidth = 35;
+        btn1.setPrefWidth(btnWidth);
+        btn2.setPrefWidth(btnWidth);
+        btn3.setPrefWidth(btnWidth);
+
+        VBox vboxWithButtons = new VBox(btn1, btn2, btn3);
+        vboxWithButtons.setSpacing(15);
+        vboxWithButtons.setTranslateX(10);
+
+        HBox hbox = new HBox(slider,vboxWithButtons);
+        hbox.setSpacing(15);
+
+        Text text = new Text(label);
+        text.setFont(new Font(16));
+
+        vbox_ControlVertical_Template.getChildren().addAll(text,hbox);
+        vbox_ControlVertical_Template.setTranslateX(-15);
+        vbox_ControlVertical_Template.setTranslateY(0);
+        vbox_ControlVertical_Template.setAlignment(Pos.CENTER);
+
+
+        slider.setLabelFormatter(new StringConverter<Double>() {
+            @Override
+            public String toString(Double object) {
+                if(object == 0) return sliderLowerLabel;
+                if(object == 100) return sliderTopLabel;
+                return sliderLowerLabel;
+            }
+
+            @Override
+            public Double fromString(String string) {
+                switch(string){
+                    case "DN":
+                        return 0d;
+                    case "UP":
+                        return 1d;
+                    default:
+                        return 1d;
+                }
+            }
+        });
     }
-    //************************END COLUMN 2 SECTION*****************************
 
+    public void setVbox_ControlHorizontal_Template(String label, String btn1_Label, String btn2_Label, String btn3_Label,
+                                                   String sliderLeftLabel, String sliderRightLabel){
 
+        Slider slider = new Slider();
+        slider.setOrientation(Orientation.HORIZONTAL);
+        slider.setPrefSize(75, 10);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit(100);
+        slider.setMinorTickCount(0);
 
-    //**************************COLUMN 3 SECTION*******************************
-    public VBox getColumn_3_VBox(){return col_3_VBox;}
-    public void setColumn_3_VBox(){
+        Text text = new Text(label);
+        text.setFont(new Font(16));
 
+        vbox_ControlHorizontal_Template = new VBox();
+
+        vbox_ControlHorizontal_Template.getChildren().addAll(text, slider,
+                new HBox(new Button(btn1_Label), new Button(btn2_Label), new Button(btn3_Label)));
+
+        vbox_ControlHorizontal_Template.setAlignment(Pos.CENTER);
+        vbox_ControlHorizontal_Template.setTranslateX(-15);
+        vbox_ControlHorizontal_Template.setSpacing(20);
+
+        slider.setLabelFormatter(new StringConverter<Double>() {
+            @Override
+            public String toString(Double object) {
+                if(object == 0) return sliderLeftLabel;
+                if(object == 100) return sliderRightLabel;
+                return sliderLeftLabel;
+            }
+
+            @Override
+            public Double fromString(String string) {
+                switch(string){
+                    case "LEFT":
+                        return 0d;
+                    case "RIGHT":
+                        return 1d;
+                    default:
+                        return 1d;
+                }
+            }
+        });
     }
-    //************************END COLUMN 3 SECTION*****************************
+    //************************END OF HELPER SETTER METHODS**********************
 
 
-
-    //**************************COLUMN 4 SECTION*******************************
-    public VBox getColumn_4_VBox(){return col_4_VBox;}
-    public void setColumn_4_VBox(){
-
-    }
-    //************************END COLUMN 4 SECTION*****************************
-
-
-
-    //**************************COLUMN 5 SECTION*******************************
-    public VBox getColumn_5_VBox(){return col_5_VBox;}
-    public void setColumn_5_VBox(){
-
-    }
-    //************************END COLUMN 5 SECTION*****************************
-
+    //************************HELPER GETTER METHODS*****************************
+    public VBox getVbox_ControlVertical_Template(){return vbox_ControlVertical_Template;}
+    public VBox getVbox_ControlHorizontal_Template(){return vbox_ControlHorizontal_Template;}
+    //************************END OF HELPER GETTER METHODS**********************
 
 }

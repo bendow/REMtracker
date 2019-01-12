@@ -238,8 +238,13 @@ public class MiniScopeDataModel {
 
         Separator separator3 = new Separator();
         separator3.setOrientation(Orientation.VERTICAL);
-        separator3.setTranslateX(-15);
+        separator3.setTranslateX(-20);
         separator3.setScaleY(separator3.getScaleY()*.9);
+
+        Separator separator4 = new Separator();
+        separator4.setOrientation(Orientation.VERTICAL);
+        separator4.setTranslateX(-10);
+        separator4.setScaleY(separator4.getScaleY()*.9);
 
         vbox_controls_buttons.getChildren().addAll(btn_Channel, hbox_grid_TextButton, btn_Cursors, btn_Menu);
 
@@ -348,9 +353,18 @@ public class MiniScopeDataModel {
         //*****END OF 3RD COLUMN IN CONTROLS************
 
         //*****START OF 4TH COLUMN IN CONTROLS**********
+        ControlElements ctrlElements = new ControlElements();
+        ctrlElements.setVbox_ControlVertical_Template("Volts/DIV",
+                "V", "mV", "uV",
+                "UP", "DN");
+        VBox vboxControl_Col4 = ctrlElements.getVbox_ControlVertical_Template();
         //*****END OF 4TH COLUMN IN CONTROLS************
 
         //*****START OF 5TH COLUMN IN CONTROLS**********
+        ctrlElements.setVbox_ControlHorizontal_Template("Volts/DIV",
+                "us", "ms", "s",
+                "LEFT", "RIGHT");
+        VBox vboxControl_Col5 = ctrlElements.getVbox_ControlHorizontal_Template();
         //*****END OF 5TH COLUMN IN CONTROLS************
 
 
@@ -358,7 +372,8 @@ public class MiniScopeDataModel {
 
         HBox hbox_Controls = new HBox();
         hbox_Controls.setSpacing(10);
-        hbox_Controls.getChildren().addAll(hbox_controls_COL1, separator, hbox_controls_COL2, separator2, hbox_controls_COL3, separator3);
+        hbox_Controls.getChildren().addAll(hbox_controls_COL1, separator, hbox_controls_COL2, separator2,
+                hbox_controls_COL3, separator3, vboxControl_Col4, separator4, vboxControl_Col5);
         stPane_Controls.getChildren().addAll(hbox_Controls);
     }
 
