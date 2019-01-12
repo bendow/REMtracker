@@ -2,6 +2,7 @@ package REMtracker.src.PKGminiscope;
 
 import javafx.geometry.*;
 import javafx.scene.Group;
+import javafx.scene.chart.Chart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -165,6 +166,12 @@ public class MiniScopeDataModel {
 
     }
 
+    private void setupGrid(Rectangle2D  aRect){
+        //Place the Grid in the "stPane_Graph" StackPane
+        //The dimensions of the grid is that of "graph_Rect"
+
+    }
+
     private void setupResultsSection() {
         /**GridPane in Results Section
          * This section consists of a 3x3 grid
@@ -223,28 +230,16 @@ public class MiniScopeDataModel {
         Button btn_Channel = new Button("Channel");
         Button btn_Cursors = new Button("Cursors");
         Button btn_Menu = new Button("Menu");
+        int bigbuttonWidth = 80;
+        int smallButtonWdith = 40;
+        btn_Channel.setMaxWidth(bigbuttonWidth);
+        btn_Grid.setMaxWidth(smallButtonWdith);
+        btn_Text.setMaxWidth(smallButtonWdith);
+        btn_Cursors.setMaxWidth(bigbuttonWidth);
+        btn_Menu.setMaxWidth(bigbuttonWidth);
+
         HBox hbox_grid_TextButton = new HBox(btn_Grid, btn_Text);
-        hbox_grid_TextButton.setSpacing(5);
-
-        Separator separator = new Separator();
-        separator.setOrientation(Orientation.VERTICAL);
-        separator.setTranslateX(0);
-        separator.setScaleY(separator.getScaleY()*.9);
-
-        Separator separator2 = new Separator();
-        separator2.setOrientation(Orientation.VERTICAL);
-        separator2.setTranslateX(-15);
-        separator2.setScaleY(separator2.getScaleY()*.9);
-
-        Separator separator3 = new Separator();
-        separator3.setOrientation(Orientation.VERTICAL);
-        separator3.setTranslateX(-20);
-        separator3.setScaleY(separator3.getScaleY()*.9);
-
-        Separator separator4 = new Separator();
-        separator4.setOrientation(Orientation.VERTICAL);
-        separator4.setTranslateX(-10);
-        separator4.setScaleY(separator4.getScaleY()*.9);
+        hbox_grid_TextButton.setSpacing(0);
 
         vbox_controls_buttons.getChildren().addAll(btn_Channel, hbox_grid_TextButton, btn_Cursors, btn_Menu);
 
@@ -262,7 +257,7 @@ public class MiniScopeDataModel {
         //*****START OF 2ND COLUMN IN CONTROLS**********
         Text txt_VertCursor = new Text("Vert Cursor");
         txt_VertCursor.setFont(new Font(16));
-        Slider sldr_VertCursor = new Slider();
+        Slider sldr_VertCursor = new Slider(0,100,50);
         sldr_VertCursor.setOrientation(Orientation.VERTICAL);
         sldr_VertCursor.setPrefSize(10, 110);
         Button btn_VCursor_A = new Button("A");
@@ -304,8 +299,6 @@ public class MiniScopeDataModel {
         vbox_VertCursor.setAlignment(Pos.CENTER);
         vbox_VertCursor.setTranslateX(-10);
 
-
-
         hbox_controls_COL2 = new HBox();
         hbox_controls_COL2.getChildren().add(vbox_VertCursor);
         hbox_controls_COL2.setAlignment(Pos.CENTER);
@@ -315,6 +308,7 @@ public class MiniScopeDataModel {
         //*****START OF 3RD COLUMN IN CONTROLS**********
         Text txt_Hort_Cursor = new Text("Hort Cursor");
         txt_Hort_Cursor.setFont(new Font(16));
+        txt_Hort_Cursor.setTranslateY(-10);
         Slider sldr_HortCursor = new Slider(0,100,50);
         sldr_HortCursor.setPrefSize(75,10);
         sldr_HortCursor.setShowTickLabels(true);
@@ -354,26 +348,49 @@ public class MiniScopeDataModel {
 
         //*****START OF 4TH COLUMN IN CONTROLS**********
         ControlElements ctrlElements = new ControlElements();
-        ctrlElements.setVbox_ControlVertical_Template("Volts/DIV",
+        ctrlElements.setVbox_ControlVertical_Template("Volts / DIV",
                 "V", "mV", "uV",
-                "UP", "DN");
+                "20", "0.1");
         VBox vboxControl_Col4 = ctrlElements.getVbox_ControlVertical_Template();
         //*****END OF 4TH COLUMN IN CONTROLS************
 
         //*****START OF 5TH COLUMN IN CONTROLS**********
-        ctrlElements.setVbox_ControlHorizontal_Template("Volts/DIV",
+        ctrlElements.setVbox_ControlHorizontal_Template("Secs / DIV",
                 "us", "ms", "s",
-                "LEFT", "RIGHT");
+                "0.1", "20");
         VBox vboxControl_Col5 = ctrlElements.getVbox_ControlHorizontal_Template();
+        vboxControl_Col5.setTranslateX(-25);
         //*****END OF 5TH COLUMN IN CONTROLS************
 
+        double separatorHieght = 0.9;   //Separator between the Controls COL 1 & COL 2
+        Separator separator = new Separator();
+        separator.setOrientation(Orientation.VERTICAL);
+        separator.setTranslateX(0);
+        separator.setScaleY(separator.getScaleY()* separatorHieght);
 
+        Separator separator2 = new Separator(); //Separator between the Controls COL 2 & COL 3
+        separator2.setOrientation(Orientation.VERTICAL);
+        separator2.setTranslateX(-15);
+        separator2.setScaleY(separator2.getScaleY()* separatorHieght);
 
+        Separator separator3 = new Separator(); //Separator between the Controls COL 3 & COL 4
+        separator3.setOrientation(Orientation.VERTICAL);
+        separator3.setTranslateX(-20);
+        separator3.setScaleY(separator3.getScaleY()* separatorHieght);
 
+        Separator separator4 = new Separator(); //Separator between the Controls COL 4 & COL 5
+        separator4.setOrientation(Orientation.VERTICAL);
+        separator4.setTranslateX(-20);
+        separator4.setScaleY(separator4.getScaleY()* separatorHieght);
+
+        //This is where all of the small control sections come together side by side
         HBox hbox_Controls = new HBox();
         hbox_Controls.setSpacing(10);
         hbox_Controls.getChildren().addAll(hbox_controls_COL1, separator, hbox_controls_COL2, separator2,
                 hbox_controls_COL3, separator3, vboxControl_Col4, separator4, vboxControl_Col5);
+        hbox_Controls.setTranslateX(10);
+
+        //Placing all the control sections on the StackPane which means placing them over the section's Rectangle
         stPane_Controls.getChildren().addAll(hbox_Controls);
     }
 

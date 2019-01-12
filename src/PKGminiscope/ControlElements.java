@@ -64,13 +64,15 @@ public class ControlElements {
     public void setVbox_ControlVertical_Template(String label, String btn1_Label, String btn2_Label, String btn3_Label,
                                                  String sliderTopLabel, String sliderLowerLabel){
 
-        Slider slider = new Slider();
+        Slider slider = new Slider(0, 5, 0);
         slider.setOrientation(Orientation.VERTICAL);
         slider.setPrefSize(10, 110);
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
-        slider.setMajorTickUnit(100);
+        slider.setMajorTickUnit(1);
         slider.setMinorTickCount(0);
+        slider.setSnapToTicks(true);
+        slider.setBlockIncrement(1);
 
         vbox_ControlVertical_Template = new VBox();
 
@@ -101,20 +103,31 @@ public class ControlElements {
         slider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double object) {
-                if(object == 0) return sliderLowerLabel;
-                if(object == 100) return sliderTopLabel;
-                return sliderLowerLabel;
+                if(object < 0.5) return sliderLowerLabel;
+                if(object < 1.5) return "0.5";
+                if(object < 2.5) return "1";
+                if(object < 3.5) return "5";
+                if(object < 4.5) return "10";
+                return sliderTopLabel;
             }
 
             @Override
             public Double fromString(String string) {
                 switch(string){
-                    case "DN":
+                    case "0.1":
                         return 0d;
-                    case "UP":
+                    case "0.5":
                         return 1d;
+                    case "1":
+                        return 2d;
+                    case "5":
+                        return 3d;
+                    case "10":
+                        return 4d;
+                    case "20":
+                        return 5d;
                     default:
-                        return 1d;
+                        return 5d;
                 }
             }
         });
@@ -123,43 +136,58 @@ public class ControlElements {
     public void setVbox_ControlHorizontal_Template(String label, String btn1_Label, String btn2_Label, String btn3_Label,
                                                    String sliderLeftLabel, String sliderRightLabel){
 
-        Slider slider = new Slider();
+        Slider slider = new Slider(0, 5, 0);
         slider.setOrientation(Orientation.HORIZONTAL);
-        slider.setPrefSize(75, 10);
+        slider.setPrefSize(100, 10); //Short width hides some tick labels
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
-        slider.setMajorTickUnit(100);
+        slider.setMajorTickUnit(1);
         slider.setMinorTickCount(0);
+        slider.setSnapToTicks(true);
+        slider.setBlockIncrement(1);
 
         Text text = new Text(label);
         text.setFont(new Font(16));
 
         vbox_ControlHorizontal_Template = new VBox();
+        HBox hbox = new HBox(new Button(btn1_Label), new Button(btn2_Label), new Button(btn3_Label));
+        hbox.setAlignment(Pos.CENTER);
+        hbox.setSpacing(5);
 
-        vbox_ControlHorizontal_Template.getChildren().addAll(text, slider,
-                new HBox(new Button(btn1_Label), new Button(btn2_Label), new Button(btn3_Label)));
+        vbox_ControlHorizontal_Template.getChildren().addAll(text, slider, hbox);
 
         vbox_ControlHorizontal_Template.setAlignment(Pos.CENTER);
-        vbox_ControlHorizontal_Template.setTranslateX(-15);
+
         vbox_ControlHorizontal_Template.setSpacing(20);
 
         slider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double object) {
-                if(object == 0) return sliderLeftLabel;
-                if(object == 100) return sliderRightLabel;
-                return sliderLeftLabel;
+                if(object < 0.5) return sliderLeftLabel;
+                if(object < 1.5) return "0.5";
+                if(object < 2.5) return "1";
+                if(object < 3.5) return "5";
+                if(object < 4.5) return "10";
+                return sliderRightLabel;
             }
 
             @Override
             public Double fromString(String string) {
                 switch(string){
-                    case "LEFT":
+                    case "0.1":
                         return 0d;
-                    case "RIGHT":
+                    case "0.5":
                         return 1d;
+                    case "1":
+                        return 2d;
+                    case "5":
+                        return 3d;
+                    case "10":
+                        return 4d;
+                    case "20":
+                        return 5d;
                     default:
-                        return 1d;
+                        return 5d;
                 }
             }
         });
