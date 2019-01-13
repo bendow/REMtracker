@@ -42,13 +42,17 @@ public class MiniScopeDataModel {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private Border border;
+    private Button btn_Channel, btn_Grid, btn_Text, btn_Cursors, btn_Menu,
+            btn_VCursor_A, btn_VCursor_B, btn_HortCursorA, btn_HortCursorB;
+    private ControlElements ctrlElements;
     private Label lbl_scopeName;
-    private Group grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu;
-    private StackPane stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
-    private Rectangle graph_Rect, results_Rect, controls_Rect, menu_Rect;
-    private VBox center_VBox;
-    private Text text1, text2, text3, text4, text5, text6, text7, text8, text9;
     private GridPane grPane_Results;
+    private Group grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu;
+    private Rectangle graph_Rect, results_Rect, controls_Rect, menu_Rect;
+    private Slider sldr_HortCursor, sldr_VertCursor;
+    private StackPane stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
+    private Text text1, text2, text3, text4, text5, text6, text7, text8, text9;
+    private VBox center_VBox, vboxControl_Col4, vboxControl_Col5;
 
 
     //************START OF CONSTRUCTORS************
@@ -216,8 +220,8 @@ public class MiniScopeDataModel {
         text1 = new Text();
         text2 = new Text();
         text3 = new Text();
-        setResultText1(new Text("Max V: 100mV"));
-        setResultText2(new Text("Min V: 0mV"));
+        setResultText1(new Text("Max V: 100uV"));
+        setResultText2(new Text("Min V: 0uV"));
         setResultText3(new Text("Counts/s: 1024"));
         grPane_Results.add(text1, 0, 0);
         grPane_Results.add(text2, 0, 1);
@@ -226,8 +230,8 @@ public class MiniScopeDataModel {
         text4 = new Text();
         text5 = new Text();
         text6 = new Text();
-        setResultsText4(new Text("Peak V: 99mV"));
-        setResultsText5(new Text("RMS V: 69.99mV"));
+        setResultsText4(new Text("Peak V: 99uV"));
+        setResultsText5(new Text("RMS V: 69.99uV"));
         setResultsText6(new Text("VACANT"));
         grPane_Results.add(text4, 1, 0);
         grPane_Results.add(text5, 1, 1);
@@ -259,11 +263,11 @@ public class MiniScopeDataModel {
         vbox_controls_buttons.setTranslateY(10);
         //vbox_controls_buttons.setTranslateX(5);
 
-        Button btn_Grid = new Button("Grid");
-        Button btn_Text = new Button("Text");
-        Button btn_Channel = new Button("Channel");
-        Button btn_Cursors = new Button("Cursors");
-        Button btn_Menu = new Button("Menu");
+        btn_Grid = new Button("Grid");
+        btn_Text = new Button("Text");
+        btn_Channel = new Button("Channel");
+        btn_Cursors = new Button("Cursors");
+        btn_Menu = new Button("Menu");
         int bigbuttonWidth = 80;
         int smallButtonWdith = 40;
         btn_Channel.setMaxWidth(bigbuttonWidth);
@@ -291,11 +295,11 @@ public class MiniScopeDataModel {
         //*****START OF 2ND COLUMN IN CONTROLS**********
         Text txt_VertCursor = new Text("Vert Cursor");
         txt_VertCursor.setFont(new Font(16));
-        Slider sldr_VertCursor = new Slider(0,100,50);
+        sldr_VertCursor = new Slider(0,100,50);
         sldr_VertCursor.setOrientation(Orientation.VERTICAL);
         sldr_VertCursor.setPrefSize(10, 110);
-        Button btn_VCursor_A = new Button("A");
-        Button btn_VCursor_B = new Button("B");
+        btn_VCursor_A = new Button("A");
+        btn_VCursor_B = new Button("B");
         btn_VCursor_B.setTranslateY(60);
         btn_VCursor_A.setTranslateX(10);
         btn_VCursor_B.setTranslateX(10);
@@ -343,7 +347,7 @@ public class MiniScopeDataModel {
         Text txt_Hort_Cursor = new Text("Hort Cursor");
         txt_Hort_Cursor.setFont(new Font(16));
         txt_Hort_Cursor.setTranslateY(-10);
-        Slider sldr_HortCursor = new Slider(0,100,50);
+        sldr_HortCursor = new Slider(0,100,50);
         sldr_HortCursor.setPrefSize(75,10);
         sldr_HortCursor.setShowTickLabels(true);
         sldr_HortCursor.setMajorTickUnit(100);
@@ -369,8 +373,8 @@ public class MiniScopeDataModel {
                 }
             }
         });
-        Button btn_HortCursorA = new Button("A");
-        Button btn_HortCursorB = new Button("B");
+        btn_HortCursorA = new Button("A");
+        btn_HortCursorB = new Button("B");
         btn_HortCursorB.setTranslateX(40);
         hbox_controls_COL3 = new HBox();
         VBox vbox_controls_COL3 = new VBox(txt_Hort_Cursor, sldr_HortCursor, new HBox(btn_HortCursorA, btn_HortCursorB));
@@ -381,18 +385,18 @@ public class MiniScopeDataModel {
         //*****END OF 3RD COLUMN IN CONTROLS************
 
         //*****START OF 4TH COLUMN IN CONTROLS**********
-        ControlElements ctrlElements = new ControlElements();
+        ctrlElements = new ControlElements();
         ctrlElements.setVbox_ControlVertical_Template("Volts / DIV",
                 "V", "mV", "uV",
                 "20", "0.1");
-        VBox vboxControl_Col4 = ctrlElements.getVbox_ControlVertical_Template();
+        vboxControl_Col4 = ctrlElements.getVbox_ControlVertical_Template();
         //*****END OF 4TH COLUMN IN CONTROLS************
 
         //*****START OF 5TH COLUMN IN CONTROLS**********
         ctrlElements.setVbox_ControlHorizontal_Template("Secs / DIV",
                 "us", "ms", "s",
                 "0.1", "20");
-        VBox vboxControl_Col5 = ctrlElements.getVbox_ControlHorizontal_Template();
+        vboxControl_Col5 = ctrlElements.getVbox_ControlHorizontal_Template();
         //vboxControl_Col5.setTranslateX(-25);
         //*****END OF 5TH COLUMN IN CONTROLS************
 
@@ -442,6 +446,7 @@ public class MiniScopeDataModel {
         grp_Controls.getChildren().add(stPane_Controls);
         grp_HiddenMenu.getChildren().add(stPane_HiddenMenu);
     }
+
     //**************END OF INIT METHODS**************
 
 
@@ -460,6 +465,22 @@ public class MiniScopeDataModel {
         //Get the name of the current Scope
         return this.scopeName;
     }
+
+    public Button getBtn_Channel(){return btn_Channel;}
+    public Button getBtn_Grid(){return btn_Grid;}
+    public Button getBtn_Text(){return btn_Text;}
+    public Button getBtn_Menu(){return btn_Menu;}
+    public Button getBtn_Cursors(){return btn_Cursors;}
+    public Button getBtn_VCursor_A(){return btn_VCursor_A;}
+    public Button getBtn_VCursor_B(){return btn_VCursor_B;}
+    public Button getBtn_HortCursorA(){return btn_HortCursorA;}
+    public Button getBtn_HortCursorB(){return btn_HortCursorB;}
+    public Button getBtn_uV(){return ctrlElements.getBtn_uV();}
+    public Button getBtn_mV(){return ctrlElements.getBtn_mV();}
+    public Button getBtn_V(){return ctrlElements.getBtn_V();}
+    public Button getBtn_us(){return ctrlElements.getBtn_us();}
+    public Button getBtn_ms(){return ctrlElements.getBtn_ms();}
+    public Button getBtn_s(){return ctrlElements.getBtn_s();}
     //*************END OF GETTER METHODS*************
 
 

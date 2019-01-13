@@ -31,6 +31,7 @@ public class ControlElements {
     private VBox col_1_VBox = new VBox();
     private VBox vbox_ControlVertical_Template;
     private VBox vbox_ControlHorizontal_Template;
+    private Button btn_V, btn_mV, btn_uV, btn_s, btn_ms, btn_us;
 
     //Constructor
     public ControlElements() {}
@@ -50,6 +51,13 @@ public class ControlElements {
     public Button getBtnMenu(){
         return new Button("Menu");
     }
+    public Button getBtn_V(){return btn_V;}
+    public Button getBtn_mV(){return btn_mV;}
+    public Button getBtn_uV(){return btn_uV;}
+    public Button getBtn_s(){return btn_s;}
+    public Button getBtn_ms(){return btn_ms;}
+    public Button getBtn_us(){return btn_us;}
+
     public HBox getHBox_COL1_Btns(){
         Button btn_Grid = new Button("Grid");
         Button btn_Text = new Button("Text");
@@ -76,15 +84,15 @@ public class ControlElements {
 
         vbox_ControlVertical_Template = new VBox();
 
-        Button btn1 = new Button(btn1_Label);
-        Button btn2 = new Button(btn2_Label);
-        Button btn3 = new Button(btn3_Label);
+        btn_V = new Button(btn1_Label);
+        btn_mV = new Button(btn2_Label);
+        btn_uV = new Button(btn3_Label);
         int btnWidth = 35;
-        btn1.setPrefWidth(btnWidth);
-        btn2.setPrefWidth(btnWidth);
-        btn3.setPrefWidth(btnWidth);
+        btn_V.setPrefWidth(btnWidth);
+        btn_mV.setPrefWidth(btnWidth);
+        btn_uV.setPrefWidth(btnWidth);
 
-        VBox vboxWithButtons = new VBox(btn1, btn2, btn3);
+        VBox vboxWithButtons = new VBox(btn_V, btn_mV, btn_uV);
         vboxWithButtons.setSpacing(15);
         vboxWithButtons.setTranslateX(10);
 
@@ -136,6 +144,9 @@ public class ControlElements {
 
     public void setVbox_ControlHorizontal_Template(String label, String btn1_Label, String btn2_Label, String btn3_Label,
                                                    String sliderLeftLabel, String sliderRightLabel){
+        btn_us = new Button(btn1_Label);
+        btn_ms = new Button(btn2_Label);
+        btn_s = new Button(btn3_Label);
 
         Slider slider = new Slider(0, 5, 0);
         slider.setOrientation(Orientation.HORIZONTAL);
@@ -151,7 +162,7 @@ public class ControlElements {
         text.setFont(new Font(16));
 
         vbox_ControlHorizontal_Template = new VBox();
-        HBox hbox = new HBox(new Button(btn1_Label), new Button(btn2_Label), new Button(btn3_Label));
+        HBox hbox = new HBox(btn_us, btn_ms, btn_s);
         hbox.setAlignment(Pos.CENTER);
         hbox.setSpacing(5);
 

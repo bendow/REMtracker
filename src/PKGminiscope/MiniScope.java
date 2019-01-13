@@ -52,7 +52,7 @@ public class MiniScope {
 
         miniScopeDataModel = new MiniScopeDataModel(this.primaryStage, this.rootLayout);
         miniScopeTimerTask = new MiniScopeTimerTask();
-        miniScopeEventRelayer = new MiniScopeEventRelayer();
+        miniScopeEventRelayer = new MiniScopeEventRelayer(miniScopeDataModel);
         scopeChannel = new Channel();
 
         setStage();
