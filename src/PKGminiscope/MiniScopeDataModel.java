@@ -176,9 +176,8 @@ public class MiniScopeDataModel {
         //The LineChart will be used to show the data from the XYChart.Series Class
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("TIME");
-        yAxis.setLabel("Voltage");
-
+        //xAxis.setLabel("TIME");
+        //yAxis.setLabel("Voltage");
 
         final LineChart<Number, Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);
 
@@ -186,6 +185,7 @@ public class MiniScopeDataModel {
         series.setName("Raw Data"); //This name can be a variable so that it changes when the Channel is changed
         //The X and Y values depend on the scale chosen; therefore it would look something like this:
         //TBD
+
         series.getData().addAll(new XYChart.Data(0,3),
                 new XYChart.Data(1,20),
                 new XYChart.Data(2,50),
@@ -198,9 +198,10 @@ public class MiniScopeDataModel {
 
         lineChart.getData().add(series);
         lineChart.setPrefSize(aRect.getWidth(),aRect.getHeight());
-        lineChart.setMinSize(aRect.getWidth(),aRect.getHeight());
+        lineChart.setMinSize(aRect.getWidth(), aRect.getHeight());
         lineChart.setMaxSize(aRect.getWidth(), aRect.getHeight());
 
+        lineChart.setLegendVisible(false);
 
         stPane_Graph.getChildren().add(lineChart);
     }
@@ -256,7 +257,7 @@ public class MiniScopeDataModel {
         VBox vbox_controls_buttons = new VBox();
         vbox_controls_buttons.setSpacing(10);
         vbox_controls_buttons.setTranslateY(10);
-        vbox_controls_buttons.setTranslateX(5);
+        //vbox_controls_buttons.setTranslateX(5);
 
         Button btn_Grid = new Button("Grid");
         Button btn_Text = new Button("Text");
@@ -330,7 +331,7 @@ public class MiniScopeDataModel {
         hbox_VertCursor.setSpacing(10);
         VBox vbox_VertCursor = new VBox(txt_VertCursor, hbox_VertCursor);
         vbox_VertCursor.setAlignment(Pos.CENTER);
-        vbox_VertCursor.setTranslateX(-10);
+        //vbox_VertCursor.setTranslateX(-10);
 
         hbox_controls_COL2 = new HBox();
         hbox_controls_COL2.getChildren().add(vbox_VertCursor);
@@ -376,7 +377,7 @@ public class MiniScopeDataModel {
         vbox_controls_COL3.setAlignment(Pos.CENTER);
         vbox_controls_COL3.setSpacing(15);
         hbox_controls_COL3.getChildren().add(vbox_controls_COL3);
-        hbox_controls_COL3.setTranslateX(-20);
+        //hbox_controls_COL3.setTranslateX(-20);
         //*****END OF 3RD COLUMN IN CONTROLS************
 
         //*****START OF 4TH COLUMN IN CONTROLS**********
@@ -392,7 +393,7 @@ public class MiniScopeDataModel {
                 "us", "ms", "s",
                 "0.1", "20");
         VBox vboxControl_Col5 = ctrlElements.getVbox_ControlHorizontal_Template();
-        vboxControl_Col5.setTranslateX(-25);
+        //vboxControl_Col5.setTranslateX(-25);
         //*****END OF 5TH COLUMN IN CONTROLS************
 
         double separatorHieght = 0.9;   //Separator between the Controls COL 1 & COL 2
@@ -403,25 +404,26 @@ public class MiniScopeDataModel {
 
         Separator separator2 = new Separator(); //Separator between the Controls COL 2 & COL 3
         separator2.setOrientation(Orientation.VERTICAL);
-        separator2.setTranslateX(-15);
+        //separator2.setTranslateX(-15);
         separator2.setScaleY(separator2.getScaleY()* separatorHieght);
 
         Separator separator3 = new Separator(); //Separator between the Controls COL 3 & COL 4
         separator3.setOrientation(Orientation.VERTICAL);
-        separator3.setTranslateX(-20);
+        //separator3.setTranslateX(-20);
         separator3.setScaleY(separator3.getScaleY()* separatorHieght);
 
         Separator separator4 = new Separator(); //Separator between the Controls COL 4 & COL 5
         separator4.setOrientation(Orientation.VERTICAL);
-        separator4.setTranslateX(-20);
+        //separator4.setTranslateX(-20);
         separator4.setScaleY(separator4.getScaleY()* separatorHieght);
 
         //This is where all of the small control sections come together side by side
         HBox hbox_Controls = new HBox();
         hbox_Controls.setSpacing(10);
+        hbox_Controls.setAlignment(Pos.CENTER);
         hbox_Controls.getChildren().addAll(hbox_controls_COL1, separator, hbox_controls_COL2, separator2,
                 hbox_controls_COL3, separator3, vboxControl_Col4, separator4, vboxControl_Col5);
-        hbox_Controls.setTranslateX(10);
+        //hbox_Controls.setTranslateX(10);
 
         //Placing all the control sections on the StackPane which means placing them over the section's Rectangle
         stPane_Controls.getChildren().addAll(hbox_Controls);
@@ -529,24 +531,25 @@ public class MiniScopeDataModel {
     }
 
     public void setScopeRectangles() {
+        int rectWidth = 550;
 
         //Scope Section: Graph
-        graph_Rect = new Rectangle(500, 350);
+        graph_Rect = new Rectangle(rectWidth, 350);
         graph_Rect.setFill(Color.WHITE);
         graph_Rect.setStroke(Color.BLACK);
 
         //Scope Section: Results
-        results_Rect = new Rectangle(500, 100);
+        results_Rect = new Rectangle(rectWidth, 100);
         results_Rect.setFill(Color.WHITE);
         results_Rect.setStroke(Color.BLACK);
 
         //Scope Section: Controls
-        controls_Rect = new Rectangle(500, 150);
+        controls_Rect = new Rectangle(rectWidth, 150);
         controls_Rect.setFill(Color.WHITE);
         controls_Rect.setStroke(Color.BLACK);
 
         //Scope Section: Hidden Menu
-        menu_Rect = new Rectangle(500, 100);
+        menu_Rect = new Rectangle(rectWidth, 100);
         menu_Rect.setFill(Color.WHITE);
         menu_Rect.setStroke(Color.BLACK);
         menu_Rect.setVisible(false);

@@ -89,13 +89,14 @@ public class ControlElements {
         vboxWithButtons.setTranslateX(10);
 
         HBox hbox = new HBox(slider,vboxWithButtons);
-        hbox.setSpacing(15);
+        hbox.setSpacing(10);
+        hbox.setAlignment(Pos.CENTER);
 
         Text text = new Text(label);
         text.setFont(new Font(16));
 
         vbox_ControlVertical_Template.getChildren().addAll(text,hbox);
-        vbox_ControlVertical_Template.setTranslateX(-15);
+        //vbox_ControlVertical_Template.setTranslateX(-15);
         vbox_ControlVertical_Template.setTranslateY(0);
         vbox_ControlVertical_Template.setAlignment(Pos.CENTER);
 
