@@ -16,7 +16,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        MiniScope miniScope = new MiniScope("Mini Scope", 1.0, primaryStage);
+
+        REMtracker reMtracker = new REMtracker(primaryStage);
     }
 
 

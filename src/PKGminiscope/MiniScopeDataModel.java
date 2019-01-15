@@ -36,6 +36,7 @@ public class MiniScopeDataModel {
     //Global Variables
     public ChannelFunctions channelFunctions;
     public MiniScopeEnums miniScopeEnums;
+    public MiniScope miniScope;
 
     //Local Variables
     private String scopeName;
@@ -50,28 +51,36 @@ public class MiniScopeDataModel {
     private Group grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu;
     private Rectangle graph_Rect, results_Rect, controls_Rect, menu_Rect;
     private Slider sldr_HortCursor, sldr_VertCursor;
-    private StackPane stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
+    private StackPane stPane_Center, stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
     private Text text1, text2, text3, text4, text5, text6, text7, text8, text9;
     private VBox center_VBox, vboxControl_Col4, vboxControl_Col5;
+    private XYChart.Series series;
+    private NumberAxis xAxis;
+    private NumberAxis yAxis;
 
 
     //************START OF CONSTRUCTORS************
     public MiniScopeDataModel() {
     } //Constructors w/o args
 
+    //Constructors w/ args
     public MiniScopeDataModel(Stage aStage, BorderPane aLayout) {
         this.primaryStage = aStage;
         this.rootLayout = aLayout;
         channelFunctions = new ChannelFunctions();
         miniScopeEnums = new MiniScopeEnums();
-        stylizeGUI();
-        initScope("MiniScope");
-    } //Constructors w/ args
+        //stylizeGUI();
+        //initScope("MiniScope");
+
+    }
     //************END OF CONSTRUCTORS************
 
 
     //************START OF INIT METHODS************
-    private void stylizeGUI() {
+
+
+
+    public void stylizeGUI() {
         //stylizeGUI sets BorderPane borders and sizes for all regions: top, bot, left, right & center
         setBorder();
         rootLayout.setBorder(this.border);
@@ -135,7 +144,7 @@ public class MiniScopeDataModel {
         rootLayout.setCenter(stPane_Center);
     }
 
-    private void initScope(String aScopeName) {
+    public void initScope(String aScopeName) {
         //Set up a default scope with all buttons, sliders, graph, etc...
         //Setup the Scope label
         setScopeLabel(aScopeName);
@@ -178,17 +187,18 @@ public class MiniScopeDataModel {
         //Place the Grid in the "stPane_Graph" StackPane
         //The dimensions of the grid is that of "graph_Rect"
         //The LineChart will be used to show the data from the XYChart.Series Class
-        final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
+        xAxis = new NumberAxis();
+        yAxis = new NumberAxis();
         //xAxis.setLabel("TIME");
         //yAxis.setLabel("Voltage");
 
         final LineChart<Number, Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);
 
-        XYChart.Series series = new XYChart.Series();
+        series = new XYChart.Series();
         series.setName("Raw Data"); //This name can be a variable so that it changes when the Channel is changed
         //The X and Y values depend on the scale chosen; therefore it would look something like this:
         //TBD
+
 
         series.getData().addAll(new XYChart.Data(0,3),
                 new XYChart.Data(1,20),
@@ -481,6 +491,20 @@ public class MiniScopeDataModel {
     public Button getBtn_us(){return ctrlElements.getBtn_us();}
     public Button getBtn_ms(){return ctrlElements.getBtn_ms();}
     public Button getBtn_s(){return ctrlElements.getBtn_s();}
+
+    public Text getText1(){return text1;}
+    public Text getText2(){return text2;}
+    public Text getText3(){return text3;}
+    public Text getText4(){return text4;}
+    public Text getText5(){return text5;}
+    public Text getText6(){return text6;}
+    public Text getText7(){return text7;}
+    public Text getText8(){return text8;}
+    public Text getText9(){return text9;}
+
+    public XYChart.Series getSeries(){return this.series;}
+    public NumberAxis getxAxis(){return this.xAxis;}
+    public NumberAxis getyAxis(){return this.yAxis;}
     //*************END OF GETTER METHODS*************
 
 
@@ -520,6 +544,7 @@ public class MiniScopeDataModel {
     public void setResultsText9(Text aText) {
         text9 = aText;
     }
+
 
     public void setScopeAlignment(VBox aBox) {
         aBox.setTranslateY(20);
@@ -588,7 +613,7 @@ public class MiniScopeDataModel {
         center_VBox.getChildren().addAll(lbl_scopeName, grp_Graph, grp_Results, grp_Controls, grp_HiddenMenu);
 
         //Fetching the StackPane that is in Center to load it with scopeVBox
-        StackPane stPane_Center = (StackPane) rootLayout.getCenter();
+        stPane_Center = (StackPane) rootLayout.getCenter();
         stPane_Center.getChildren().add(center_VBox);
     }
 
@@ -597,4 +622,14 @@ public class MiniScopeDataModel {
         this.scopeName = theScopeName;
     }
     //*************END OF SETTER METHODS*************
+
+
+    //************START OF HELPER METHODS************
+    public void movethisScope(int x, int y){
+        center_VBox.setTranslateX(x);
+        center_VBox.setTranslateY(y);
+    }
+
+    //*************END OF HELPER METHODS*************
+
 }

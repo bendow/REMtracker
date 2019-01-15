@@ -40,24 +40,38 @@ public class MiniScope {
     //Local Variables
 
     //Constructor with no arguments
-    public MiniScope() {
-    }
+    public MiniScope() {}
 
 
     public MiniScope(String theAppName, double theVersion, Stage aStage) {
         this.appName = theAppName;
         this.version = theVersion;
         this.primaryStage = aStage;
-        rootLayout = new BorderPane();
-
-        miniScopeDataModel = new MiniScopeDataModel(this.primaryStage, this.rootLayout);
-        miniScopeTimerTask = new MiniScopeTimerTask();
-        miniScopeEventRelayer = new MiniScopeEventRelayer(miniScopeDataModel);
+        //miniScopeTimerTask = new MiniScopeTimerTask();
+        //miniScopeEventRelayer = new MiniScopeEventRelayer(miniScopeDataModel);
         scopeChannel = new Channel();
-
-        setStage();
     }
 
+
+
+
+
+
+
+    //************START OF GETTER METHODS************
+    public MiniScopeDataModel getMiniScopeDataModel() {
+        return miniScopeDataModel;
+    }
+    public BorderPane getRootLayout(){return this.rootLayout;}
+
+    //*************END OF GETTER METHODS*************
+
+
+
+
+
+
+    //************START OF SETTER METHODS************
     //setStage sets a scene with a pane layout and scene dimensions
     public void setStage() {
         double scaleValue = 0.95;
@@ -69,12 +83,24 @@ public class MiniScope {
         primaryStage.setScene(new Scene(rootLayout, sceneWidth, sceneHeight));
         primaryStage.show();
     }
+    public void setGUILayout(BorderPane aLayout){
+        rootLayout = aLayout;
+    }
+    //*************END OF SETTER METHODS*************
 
-    //Getting Screen Dimensions
+
+
+
+
+    //************START OF HELPER METHODS************
+    // Getting Screen Dimensions
     public Rectangle2D getScreenDimensions() {
         return new Rectangle2D(0, 0, Screen.getPrimary().getVisualBounds().getWidth(),
                 Screen.getPrimary().getVisualBounds().getHeight());
     }
-
+    public void initDataModel(){
+        miniScopeDataModel = new MiniScopeDataModel(this.primaryStage, this.rootLayout);
+    }
+    //*************END OF HELPER METHODS*************
 
 }
