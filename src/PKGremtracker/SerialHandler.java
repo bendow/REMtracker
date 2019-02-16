@@ -1,4 +1,4 @@
-package REMtracker.src.PKGremtracker;
+package PKGremtracker;
 /**
  * SerialHandler sends AT Commands to the ESP-12S
  * Identifies if the USART to TTL controller is connected which is used for initial programming
@@ -15,8 +15,6 @@ package REMtracker.src.PKGremtracker;
  */
 
 import com.fazecast.jSerialComm.*;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 
 public class SerialHandler {
