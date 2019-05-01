@@ -54,9 +54,10 @@ public class MiniScopeDataModel {
     private StackPane stPane_Center, stPane_Graph, stPane_Results, stPane_Controls, stPane_HiddenMenu;
     private Text text1, text2, text3, text4, text5, text6, text7, text8, text9;
     private VBox center_VBox, vboxControl_Col4, vboxControl_Col5;
-    private XYChart.Series series;
+    public XYChart.Series series;
     private NumberAxis xAxis;
     private NumberAxis yAxis;
+
 
 
     //************START OF CONSTRUCTORS************
