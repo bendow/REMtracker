@@ -55,8 +55,8 @@ public class MiniScopeDataModel {
     private Text text1, text2, text3, text4, text5, text6, text7, text8, text9;
     private VBox center_VBox, vboxControl_Col4, vboxControl_Col5;
     public XYChart.Series series;
-    private NumberAxis xAxis;
-    private NumberAxis yAxis;
+    public NumberAxis xAxis;
+    public NumberAxis yAxis;
 
 
 
@@ -190,8 +190,8 @@ public class MiniScopeDataModel {
         //The LineChart will be used to show the data from the XYChart.Series Class
         xAxis = new NumberAxis();
         yAxis = new NumberAxis();
-        //xAxis.setLabel("TIME");
-        //yAxis.setLabel("Voltage");
+        xAxis.setLabel("TIME");
+        yAxis.setLabel("Voltage");
 
         final LineChart<Number, Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);
 
